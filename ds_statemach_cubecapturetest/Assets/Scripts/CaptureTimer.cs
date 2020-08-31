@@ -64,8 +64,8 @@ public class CaptureTimer : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerCapturing = false;
-            player.GetComponent<PlayerController>().captureTime = 100;
             anim.SetBool("shrinkAnim", false);
+            player.GetComponent<PlayerController>().captureTime = 100;
         }
     }
 }

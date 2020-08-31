@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
         winText.text = "";
     }
 
+    private void Update()
+    {
+        Debug.Log(captureTime);
+    }
+
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");

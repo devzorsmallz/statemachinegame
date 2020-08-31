@@ -102,31 +102,31 @@
     <None Include="Assets\Chunity\1. INSTALL.txt" />
     <None Include="Assets\Chunity\3. REFERENCE.txt" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/Toolbars/SCHOOL/Boise State University/Year 4/Sem 1/GIMM 400/Assignments/Group State Machine Game/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/statemachinegame/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/Toolbars/SCHOOL/Boise State University/Year 4/Sem 1/GIMM 400/Assignments/Group State Machine Game/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/statemachinegame/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Toolbars/SCHOOL/Boise State University/Year 4/Sem 1/GIMM 400/Assignments/Group State Machine Game/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/statemachinegame/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/Toolbars/SCHOOL/Boise State University/Year 4/Sem 1/GIMM 400/Assignments/Group State Machine Game/ds_statemach_cubecapturetest/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/statemachinegame/ds_statemach_cubecapturetest/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/Toolbars/SCHOOL/Boise State University/Year 4/Sem 1/GIMM 400/Assignments/Group State Machine Game/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/statemachinegame/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Toolbars/SCHOOL/Boise State University/Year 4/Sem 1/GIMM 400/Assignments/Group State Machine Game/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/statemachinegame/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/Toolbars/SCHOOL/Boise State University/Year 4/Sem 1/GIMM 400/Assignments/Group State Machine Game/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/statemachinegame/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Toolbars/SCHOOL/Boise State University/Year 4/Sem 1/GIMM 400/Assignments/Group State Machine Game/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/statemachinegame/ds_statemach_cubecapturetest/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/Toolbars/SCHOOL/Boise State University/Year 4/Sem 1/GIMM 400/Assignments/Group State Machine Game/ds_statemach_cubecapturetest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/statemachinegame/ds_statemach_cubecapturetest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
