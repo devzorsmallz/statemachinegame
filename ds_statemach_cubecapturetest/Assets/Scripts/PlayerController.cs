@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(captureTime);
+        Debug.Log("Pickup Capture Time: " + captureTime);
     }
 
     void FixedUpdate()

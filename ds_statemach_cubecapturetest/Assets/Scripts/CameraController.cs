@@ -5,17 +5,23 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
+    public float speed_h = 2.0f;
+    public float speed_v = 2.0f;
 
-    private Vector3 offset;
+    private float yaw;
+    private float pitch;
 
-    // Start is called before the first frame update
-    void Start()
+    // Update is called once per frame
+    void Update()
     {
-        offset = transform.position - player.transform.position;
+        yaw += speed_h * Input.GetAxis("Mouse X");
+        pitch -= speed_v * Input.GetAxis("Mouse Y");
+
+        transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
     }
 
     void LateUpdate()
     {
-        transform.position = player.transform.position + offset;
+        transform.position = player.transform.position;
     }
 }
