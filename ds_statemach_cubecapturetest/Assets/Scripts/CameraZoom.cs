@@ -16,12 +16,14 @@ public class CameraZoom : MonoBehaviour
         Debug.Log("Camera Distance: " + distance);
         Debug.Log("Zoom: " + zoom);
         
+        
+
         if (distance > 3 && distance < 15)
         {
             transform.position += transform.forward * zoom;
         }
         
-        if (distance < 3)
+        else if (distance < 3)
         {
             if (zoom < 0)
             {
@@ -29,7 +31,7 @@ public class CameraZoom : MonoBehaviour
             }
         }
 
-        if (distance > 15)
+        else
         {
             if (zoom > 0)
             {
