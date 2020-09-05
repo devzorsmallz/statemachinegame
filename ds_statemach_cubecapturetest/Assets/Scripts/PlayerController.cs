@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public bool movementDisabled = false;
     public float speed;
     public float dashSpeed;
-    public int captureTime = 200;
+    public int captureTime = 50;
     public int count = 0;
     public int score = 0;
     public int dashCooldown = 1000;
