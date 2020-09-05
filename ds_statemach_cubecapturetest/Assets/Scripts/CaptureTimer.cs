@@ -13,7 +13,7 @@ public class CaptureTimer : MonoBehaviour
 
     void Start()
     {
-        anim = this.GetComponent<Animator>();
+        anim = this.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame

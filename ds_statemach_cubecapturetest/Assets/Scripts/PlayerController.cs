@@ -11,11 +11,15 @@ public class PlayerController : MonoBehaviour
     public int captureTime = 100;
     public int count = 0;
 
+    private Vector3 movement;
     private Rigidbody rb;
+    private Transform cameraTransform;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.maxAngularVelocity = 25.0f;
+        rb.drag = 0.5f;
         SetCountText();
         winText.text = "";
     }
@@ -30,7 +34,9 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+
+        movement = RotateWithView();
 
         rb.AddForce(movement * speed);
     }
@@ -41,6 +47,22 @@ public class PlayerController : MonoBehaviour
         if (count >= 8)
         {
             winText.text = "You Win!";
+        }
+    }
+
+    private Vector3 RotateWithView()
+    {
+        if (cameraTransform != null)
+        {
+            Vector3 direction = cameraTransform.TransformDirection(movement);
+            direction.Set(direction.x, 0, direction.z);
+            return direction.normalized * movement.magnitude;
+        }
+
+        else
+        {
+            cameraTransform = Camera.main.transform;
+            return movement;
         }
     }
 }
