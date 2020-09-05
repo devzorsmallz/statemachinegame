@@ -33,10 +33,9 @@ public class CaptureTimer : MonoBehaviour
             playerHasCaptured = true;
             hasBeenCounted = true;
             player.GetComponent<PlayerController>().count++;
-            player.GetComponent<PlayerController>().SetCountText();
 
             Debug.Log("Cube " + player.GetComponent<PlayerController>().count + " Captured!");
-            player.GetComponent<PlayerController>().captureTime = 100;
+            player.GetComponent<PlayerController>().captureTime = 200;
 
             player.GetComponent<ChuckSubInstance>().RunCode(@"
 			SinOsc foo => dac;
@@ -65,7 +64,7 @@ public class CaptureTimer : MonoBehaviour
         {
             playerCapturing = false;
             anim.SetBool("shrinkAnim", false);
-            player.GetComponent<PlayerController>().captureTime = 100;
+            player.GetComponent<PlayerController>().captureTime = 200;
         }
     }
 }

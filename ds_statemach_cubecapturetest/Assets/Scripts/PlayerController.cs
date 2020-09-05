@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public Text countText;
     public Text winText;
-    public int captureTime = 100;
+    public Text scoreText;
+    public int captureTime = 200;
     public int count = 0;
+    public int score = 0;
 
     private Vector3 movement;
     private Rigidbody rb;
@@ -20,13 +22,20 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.maxAngularVelocity = 25.0f;
         rb.drag = 0.5f;
-        SetCountText();
         winText.text = "";
     }
 
-    private void Update()
+    void Update()
     {
         Debug.Log("Pickup Capture Time: " + captureTime);
+        Debug.Log("Score: " + score);
+        scoreText.text = "Score: " + score.ToString();
+        countText.text = "Count: " + count.ToString();
+
+        if (score == 8)
+        {
+            winText.text = "You Win!";
+        }
     }
 
     void FixedUpdate()
@@ -39,15 +48,6 @@ public class PlayerController : MonoBehaviour
         movement = RotateWithView();
 
         rb.AddForce(movement * speed);
-    }
-
-    public void SetCountText()
-    {
-        countText.text = "Count: " + count.ToString();
-        if (count >= 8)
-        {
-            winText.text = "You Win!";
-        }
     }
 
     private Vector3 RotateWithView()
@@ -63,6 +63,15 @@ public class PlayerController : MonoBehaviour
         {
             cameraTransform = Camera.main.transform;
             return movement;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Goal"))
+        {
+            score += count;
+            count = 0;
         }
     }
 }
