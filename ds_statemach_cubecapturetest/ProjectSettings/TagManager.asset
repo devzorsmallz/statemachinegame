@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Pick Up
   - Goal
+  - EnemyGoal
+  - Enemy
+  - Friendly
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,9 @@ public class PlayerController : MonoBehaviour
     public bool movementDisabled = false;
     public float speed;
     public float dashSpeed;
-    public int captureTime = 200;
     public int count = 0;
     public int score = 0;
+    public int numCubes = 8;
     public int dashCooldown = 1000;
     public Text countText;
     public Text winText;
@@ -18,7 +19,6 @@ public class PlayerController : MonoBehaviour
     public Text dashCDText;
 
     private bool dashHeld = false;
-    private int minDashHold = 50;
     private Vector3 movement;
     private Rigidbody rb;
     private Transform cameraTransform;
@@ -33,27 +33,33 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Pickup Capture Time: " + captureTime);
-        Debug.Log("Score: " + score);
+        if (numCubes == 0)
+        {
+            if (score < numCubes / 2)
+            {
+                winText.text = "You Lose!";
+            }
+
+            else if (score == numCubes / 2)
+            {
+                winText.text = "Tie!";
+            }
+
+            else
+            {
+                winText.text = "You Win!";
+            }
+        }
+        //Debug.Log("Pickup Capture Time: " + captureTime);
+        //Debug.Log("Score: " + score);
         scoreText.text = "Score: " + score.ToString();
         countText.text = "Count: " + count.ToString();
 
         dashCDText.text = "Dash Cooldown: " + dashCooldown.ToString();
 
-        if (score == 8)
-        {
-            winText.text = "You Win!";
-        }
-
         if (dashCooldown < 1000)
         {
             dashCooldown++;
-        }
-
-        if (dashHeld && minDashHold > 0)
-        {
-            minDashHold--;
-            Debug.Log("Min Dash Hold: " + minDashHold);
         }
 
         if (dashCooldown == 1000 && Input.GetKeyDown(KeyCode.Space))
@@ -72,20 +78,16 @@ public class PlayerController : MonoBehaviour
 
         if (dashHeld && Input.GetKeyUp(KeyCode.Space))
         {
-            if (minDashHold == 0)
-            {
-                if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0) { }
+            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0) { }
                 
-                else
-                {
-                    rb.AddForce(movement * dashSpeed);
-                    dashCooldown = 0;
-                }
+            else
+            {
+                rb.AddForce(movement * dashSpeed);
+                dashCooldown = 0;
             }
 
             dashHeld = false;
             movementDisabled = false;
-            minDashHold = 50;
         }
     }
 
@@ -124,8 +126,12 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Goal"))
         {
-            score += count;
-            count = 0;
+            if (count > 0)
+            {
+                score += count;
+                numCubes-= count;
+                count = 0;
+            }
         }
     }
 }

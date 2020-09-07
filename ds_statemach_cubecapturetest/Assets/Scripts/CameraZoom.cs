@@ -13,8 +13,8 @@ public class CameraZoom : MonoBehaviour
     {
         distance = Vector3.Distance(player.transform.position, transform.position);
         zoom = Input.GetAxis("Mouse ScrollWheel") * 10;
-        Debug.Log("Camera Distance: " + distance);
-        Debug.Log("Zoom: " + zoom);
+        //Debug.Log("Camera Distance: " + distance);
+        //Debug.Log("Zoom: " + zoom);
         
         
 
