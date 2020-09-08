@@ -37,7 +37,7 @@ public class AIController : MonoBehaviour
         Debug.Log(count);
 
         // If the current target is destroyed, find another one
-        if (target == null || nextTarget == null)
+        if (target == null || nextTarget == null || !target.gameObject.activeInHierarchy || !nextTarget.gameObject.activeInHierarchy)
         {
             updateTarget = true;
         }
