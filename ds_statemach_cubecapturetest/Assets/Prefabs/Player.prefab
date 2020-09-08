@@ -125,11 +125,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f53c5480e85364d89b80e55cb1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementDisabled: 0
+  isDashing: 0
+  canDash: 1
   speed: 10
+  dashSpeed: 3000
+  count: 0
+  score: 0
+  initialNumCubes: 8
+  numCubes: 0
+  dashCooldown: 5
+  currentDashCooldown: 0
   countText: {fileID: 0}
   winText: {fileID: 0}
-  captureTime: 100
-  count: 0
+  scoreText: {fileID: 0}
+  dashCooldownText: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!82 &8047878996068239700
 AudioSource:
   m_ObjectHideFlags: 0

@@ -10,28 +10,31 @@ public class CaptureTimer : MonoBehaviour
 
     private bool playerCapturing = false;
     private bool enemyCapturing = false;
+    private bool friendlyCapturing = false;
     private Animator anim;
     private GameObject player;
     private GameObject enemy;
+    private GameObject friendly;
 
     void Start()
     {
         anim = this.GetComponentInChildren<Animator>();
         player = GameObject.Find("Player");
         enemy = GameObject.Find("AI");
+        friendly = GameObject.Find("Friendly");
     }
 
     void Update()
     {
         // If the cube has not been captured, the enemy is not capturing it, and the player is capturing it, start the capture countdown and play the animation
-        if (!hasBeenCaptured && !enemyCapturing && playerCapturing)
+        if (!hasBeenCaptured && !enemyCapturing && !friendlyCapturing && playerCapturing)
         {
             StartCoroutine("CaptureCountdown", captureTime);
             anim.SetBool("shrinkAnim", true);
         }
 
         // If the cube has been captured by the player, increase the player's cube count, play a sound, and destroy the cube
-        if (hasBeenCaptured && !enemyCapturing && playerCapturing)
+        if (hasBeenCaptured && !enemyCapturing && !friendlyCapturing && playerCapturing)
         {
             player.GetComponent<PlayerController>().count++;
 
@@ -51,7 +54,7 @@ public class CaptureTimer : MonoBehaviour
         }
 
         // If the cube has not been captured, the player is not capturing it, and the enemy is capturing it, start the capture countdown and play the animation
-        if (!hasBeenCaptured && !playerCapturing && enemyCapturing)
+        if (!hasBeenCaptured && !playerCapturing && !friendlyCapturing && enemyCapturing)
         {
             StartCoroutine("CaptureCountdown", captureTime);
             anim.SetBool("shrinkAnim", true);
@@ -59,7 +62,7 @@ public class CaptureTimer : MonoBehaviour
 
         // If the cube has been captured by the enemy, increase the enemy's cube count, play a sound
         // Notify the enemy that it has captured the cube, and destroy the cube
-        if (hasBeenCaptured && !playerCapturing && enemyCapturing)
+        if (hasBeenCaptured && !playerCapturing && !friendlyCapturing && enemyCapturing)
         {
             enemy.GetComponent<AIController>().count++;
 
@@ -78,6 +81,31 @@ public class CaptureTimer : MonoBehaviour
             enemy.GetComponent<AIController>().hasCaptured = true;
             hasBeenCaptured = false;
             enemyCapturing = false;
+            this.gameObject.SetActive(false);
+        }
+
+        if (!hasBeenCaptured && !enemyCapturing && !playerCapturing && friendlyCapturing)
+        {
+            StartCoroutine("CaptureCountdown", captureTime);
+            anim.SetBool("shrinkAnim", true);
+        }
+
+        if (hasBeenCaptured && !enemyCapturing && !playerCapturing && friendlyCapturing)
+        {
+            friendly.GetComponent<FriendlyController>().count++;
+
+            player.GetComponent<ChuckSubInstance>().RunCode(@"
+			SinOsc foo => dac;
+			repeat( 15 )
+			{
+				Math.random2f( 300, 700 ) => foo.freq;
+				10::ms => now;
+			}
+		    ");
+
+            friendly.GetComponent<FriendlyController>().hasCaptured = true;
+            hasBeenCaptured = false;
+            friendlyCapturing = false;
             this.gameObject.SetActive(false);
         }
     }
@@ -106,10 +134,18 @@ public class CaptureTimer : MonoBehaviour
             enemyCapturing = true;
         }
 
-        // If the cube falls through the floor, it will respawn in the center of the arena
+        else if (other.gameObject.CompareTag("Friendly"))
+        {
+            friendlyCapturing = true;
+        }
+
+        // If the cube falls through the floor, it will respawn above the arena
         else if (other.gameObject.CompareTag("Death Area"))
         {
-            transform.position = new Vector3(0, 5.0f, 0);
+            transform.position = new Vector3(0, 2.0f, 0);
+            GetComponent<SphereCollider>().isTrigger = false;
+            GetComponent<Rigidbody>().isKinematic = false;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 
@@ -127,6 +163,13 @@ public class CaptureTimer : MonoBehaviour
         else if (other.gameObject.CompareTag("Enemy"))
         {
             enemyCapturing = false;
+            anim.SetBool("shrinkAnim", false);
+            StopCoroutine("CaptureCountdown");
+        }
+
+        else if (other.gameObject.CompareTag("Friendly"))
+        {
+            friendlyCapturing = false;
             anim.SetBool("shrinkAnim", false);
             StopCoroutine("CaptureCountdown");
         }
