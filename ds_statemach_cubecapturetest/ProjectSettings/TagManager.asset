@@ -9,6 +9,8 @@ TagManager:
   - EnemyGoal
   - Enemy
   - Friendly
+  - Ground
+  - Death Area
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Packages.Rider.Editor.PostProcessors;
+using System.Collections;
 using System.Collections.Generic;
 using System.Media;
 using System.Timers;
@@ -20,6 +21,7 @@ public class AIController : MonoBehaviour
     public Transform nextTarget;
     public GameObject[] targetList;
     public GameObject player;
+    public GameObject droppedCube;
     void Start()
     {
         // Get the NavMeshAgent component
@@ -32,8 +34,16 @@ public class AIController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(count);
+
+        // If the current target is destroyed, find another one
+        if (target == null || nextTarget == null)
+        {
+            updateTarget = true;
+        }
+
         // If the enemy has a cube, set TurnIn to true;
-        if (hasCaptured)
+        if (hasCaptured && count != 0)
         {
             TurnIn = true;
         }
@@ -51,7 +61,7 @@ public class AIController : MonoBehaviour
             {
                 target = nextTarget;
                 updateTarget = false;
-            }  
+            }
         }
 
         navigationTime += Time.deltaTime;
@@ -61,10 +71,19 @@ public class AIController : MonoBehaviour
             navigationTime = 0;
         }
         
-        // If TurnIn is true, find the Goal
+        // If TurnIn is true, if the count goes to zero, switch back to finding cubes; otherwise, find the Goal
         if (TurnIn == true)
         {
-            target = GameObject.Find("Enemy Base Goal").transform;
+            if (count == 0)
+            {
+                updateTarget = true;
+            }
+
+            else
+            {
+                target = GameObject.Find("Enemy Base Goal").transform;
+            }
+            
             TurnIn = false;
         }
     }
@@ -92,6 +111,28 @@ public class AIController : MonoBehaviour
                 player.GetComponent<PlayerController>().numCubes -= count;
                 count = 0;
                 hasCaptured = false;
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // If the player dashes into the enemy, the enemy drops its cubes
+        if (collision.collider.tag == "Player" && collision.collider.GetComponent<PlayerController>().isDashing)
+        {
+            if (count > 0)
+            {
+                for (int i = 0; i < count;  i++)
+                {
+                    GameObject droppedCubeInstance;
+                    droppedCubeInstance = Instantiate(droppedCube, new Vector3(transform.position.x, transform.position.y + 3.0f, transform.position.z), transform.rotation) as GameObject;
+                    droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
+                    TurnIn = false;
+                    updateTarget = true;
+                    Debug.Log("Hello");
+                }
+
+                count = 0;
             }
         }
     }

@@ -7,16 +7,18 @@ public class CaptureTimer : MonoBehaviour
 {
     public bool hasBeenCaptured = false;
     public int captureTime;
-    public GameObject player;
-    public GameObject enemy;
 
     private bool playerCapturing = false;
     private bool enemyCapturing = false;
     private Animator anim;
+    private GameObject player;
+    private GameObject enemy;
 
     void Start()
     {
         anim = this.GetComponentInChildren<Animator>();
+        player = GameObject.Find("Player");
+        enemy = GameObject.Find("AI");
     }
 
     void Update()
@@ -55,7 +57,8 @@ public class CaptureTimer : MonoBehaviour
             anim.SetBool("shrinkAnim", true);
         }
 
-        // If the cube has been captured by the enemy, increase the enemy's cube count, play a sound, notify the enemy that it has captured the cube, and destroy the cube
+        // If the cube has been captured by the enemy, increase the enemy's cube count, play a sound
+        // Notify the enemy that it has captured the cube, and destroy the cube
         if (hasBeenCaptured && !playerCapturing && enemyCapturing)
         {
             enemy.GetComponent<AIController>().count++;
@@ -73,7 +76,19 @@ public class CaptureTimer : MonoBehaviour
 		    ");
 
             enemy.GetComponent<AIController>().hasCaptured = true;
+            hasBeenCaptured = false;
+            enemyCapturing = false;
             this.gameObject.SetActive(false);
+        }
+    }
+
+    // When the cube hits the ground, it is now able to be picked up, and it won't fall through the floor
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Ground")
+        {
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<SphereCollider>().isTrigger = true;
         }
     }
 
@@ -89,6 +104,12 @@ public class CaptureTimer : MonoBehaviour
         else if (other.gameObject.CompareTag("Enemy"))
         {
             enemyCapturing = true;
+        }
+
+        // If the cube falls through the floor, it will respawn in the center of the arena
+        else if (other.gameObject.CompareTag("Death Area"))
+        {
+            transform.position = new Vector3(0, 5.0f, 0);
         }
     }
 
