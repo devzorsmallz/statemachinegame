@@ -1,109 +1,141 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Timers;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public bool movementDisabled = false;
+    public bool isDashing = false;
+    public bool canDash = true;
     public float speed;
     public float dashSpeed;
-    public int captureTime = 50;
     public int count = 0;
     public int score = 0;
-    public int dashCooldown = 1000;
+    public int initialNumCubes = 8;
+    public int numCubes;
+    public int dashCooldown = 5;
+    public int currentDashCooldown;
     public Text countText;
     public Text winText;
     public Text scoreText;
-    public Text dashCDText;
+    public Text dashCooldownText;
+    public GameObject cam;
 
     private bool dashHeld = false;
-    private int minDashHold = 50;
     private Vector3 movement;
     private Rigidbody rb;
     private Transform cameraTransform;
 
     void Start()
     {
+        currentDashCooldown = 0;
         rb = GetComponent<Rigidbody>();
         rb.maxAngularVelocity = 10.0f;
         rb.drag = 0.5f;
         winText.text = "";
+        numCubes = initialNumCubes;
     }
 
     void Update()
     {
-        Debug.Log("Pickup Capture Time: " + captureTime);
-        Debug.Log("Score: " + score);
+        // Set the Dash Cooldown text to reflect the current dash cooldown
+        dashCooldownText.text = "Dash Cooldown: " + currentDashCooldown;
+
+        if (isDashing)
+        {
+            // While the player is dashing, their mass is increased, so when they hit an enemy, it goes flying
+            rb.mass = 100;
+            // If you miss the enemy, you are "confused" for 2 seconds, meaning you cannot move. This also prevents adjusting trajectory during dash.
+            StartCoroutine("DashCoroutine", 2);
+        }
+
+        // If you are not dashing and the spacebar is not held down, your mass returns to 1 and your movement is re-enabled
+        else if (!isDashing && !dashHeld)
+        {
+            rb.mass = 1;
+            movementDisabled = false;
+        }
+
+        // Win Text
+        if (numCubes == 0)
+        {
+            // If you have fewer than half of the cubes when they have all been brought to a goal, you lose
+            if (score < initialNumCubes / 2)
+            {
+                winText.text = "You Lose!";
+            }
+
+            // If you have exactly half, you tie
+            else if (score == initialNumCubes / 2)
+            {
+                winText.text = "Tie!";
+            }
+            
+            // If you have more than half, you win
+            else
+            {
+                winText.text = "You Win!";
+            }
+        }
+
+        // Set score text and count text
         scoreText.text = "Score: " + score.ToString();
         countText.text = "Count: " + count.ToString();
 
-        dashCDText.text = "Dash Cooldown: " + dashCooldown.ToString();
-
-        if (score == 8)
+        // If the dash cooldown is zero, you are not currently dashing, and you hold down both space and forward, you will not be able to move until you let go of space
+        // The camera zooms in slightly to indicate that you are about to perform a dash; camera zoom control is taken from the player
+        if (canDash && !isDashing && Input.GetKeyDown(KeyCode.Space) && Input.GetAxis("Vertical") > 0)
         {
-            winText.text = "You Win!";
-        }
-
-        if (dashCooldown < 1000)
-        {
-            dashCooldown++;
-        }
-
-        if (dashHeld && minDashHold > 0)
-        {
-            minDashHold--;
-            Debug.Log("Min Dash Hold: " + minDashHold);
-        }
-
-        if (dashCooldown == 1000 && Input.GetKeyDown(KeyCode.Space))
-        {
-            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0) { }
-
-            else
-            {
-                rb.velocity = Vector3.zero;
-                rb.freezeRotation = true;
-                rb.freezeRotation = false;
-                dashHeld = true;
-                movementDisabled = true;
-            }
+            dashHeld = true;
+            movementDisabled = true;
+            cam.GetComponent<CameraZoom>().canZoom = false;
+            cam.transform.position += cam.transform.forward * 3;
         }
 
         if (dashHeld && Input.GetKeyUp(KeyCode.Space))
         {
-            if (minDashHold == 0)
+            // If you simply let go of space without holding forward, the dash is canceled
+            if (Input.GetAxis("Vertical") == 0) { }
+            
+            // If you let go of space and are still holding forward, you get launched in the direction the camera is facing, and your dash goes on cooldown
+            else
             {
-                if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0) { }
-                
-                else
-                {
-                    rb.AddForce(movement * dashSpeed);
-                    dashCooldown = 0;
-                }
+                rb.AddForce(new Vector3(cam.transform.forward.x, 0.0f, cam.transform.forward.z) * dashSpeed);
+                isDashing = true;
+                canDash = false;
+                StartCoroutine("DashCooldownCoroutine", dashCooldown);
             }
 
+            // The camera zooms back out, and camera zoom control is returned to the player
             dashHeld = false;
-            movementDisabled = false;
-            minDashHold = 50;
+            cam.GetComponent<CameraZoom>().canZoom = true;
+            cam.transform.position -= cam.transform.forward * 3;
         }
     }
 
     void FixedUpdate()
     {
+        // Set horizontal and vertical inputs to their respective axes
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-
+        
+        // Set movement to the horizontal and vertical inputs
         movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
+        // Set movement to the value returned by RotateWithView
         movement = RotateWithView();
 
+        // If movement is not disabled, move according to inputs
         if (!movementDisabled)
         {
             rb.AddForce(movement * speed);
         }
     }
 
+    // Rotate input with view (i.e. forward direction changes depending on which way you are facing)
     private Vector3 RotateWithView()
     {
         if (cameraTransform != null)
@@ -120,12 +152,60 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // When you touch the Goal, if you have cubes, exchange them for points
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Goal"))
         {
-            score += count;
-            count = 0;
+            if (count > 0)
+            {
+                score += count;
+                numCubes-= count;
+                count = 0;
+            }
+        }
+    }
+
+    // When you collide with an enemy while you are dashing, stop moving and re-enable movement
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isDashing && collision.collider.tag == "Enemy")
+        {
+            rb.velocity = Vector3.zero;
+            StopCoroutine("DashCoroutine");
+            isDashing = false;
+        }
+    }
+
+    // If you miss the enemy while dashing, you cannot move for two seconds
+    private IEnumerator DashCoroutine(int time)
+    {
+        while (time > 0)
+        {
+            time--;
+            yield return new WaitForSeconds(1);
+        }
+
+        if (time == 0)
+        {
+            isDashing = false;
+        }
+    }
+
+    // Dash cooldown timer
+    private IEnumerator DashCooldownCoroutine(int time)
+    {
+        while (time > 0)
+        {
+            currentDashCooldown = time;
+            time--;
+            yield return new WaitForSeconds(1);
+        }
+
+        if (time == 0)
+        {
+            currentDashCooldown = time;
+            canDash = true;
         }
     }
 }

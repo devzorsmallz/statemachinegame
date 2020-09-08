@@ -7,6 +7,11 @@ TagManager:
   - Pick Up
   - Goal
   - EnemyGoal
+<<<<<<< HEAD
+=======
+  - Enemy
+  - Friendly
+>>>>>>> devonsmallwood
   layers:
   - Default
   - TransparentFX

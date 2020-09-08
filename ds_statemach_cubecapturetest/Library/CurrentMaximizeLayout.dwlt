@@ -22,11 +22,19 @@ MonoBehaviour:
     x: 0
     y: 30
     width: 1920
+<<<<<<< HEAD
     height: 947
   m_MinSize: {x: 911, y: 442}
   m_MaxSize: {x: 22006, y: 14021}
   vertical: 0
   controlID: 178
+=======
+    height: 957
+  m_MinSize: {x: 908, y: 442}
+  m_MaxSize: {x: 22003, y: 14042}
+  vertical: 0
+  controlID: 26633
+>>>>>>> devonsmallwood
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -136,11 +144,19 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 289
+<<<<<<< HEAD
     height: 947
   m_MinSize: {x: 231, y: 371}
   m_MaxSize: {x: 10001, y: 14021}
   vertical: 1
   controlID: 94
+=======
+    height: 957
+  m_MinSize: {x: 231, y: 392}
+  m_MaxSize: {x: 10001, y: 14042}
+  vertical: 1
+  controlID: 26568
+>>>>>>> devonsmallwood
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -206,7 +222,12 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
+<<<<<<< HEAD
     m_Folders: []
+=======
+    m_Folders:
+    - Assets/Scripts
+>>>>>>> devonsmallwood
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
@@ -218,7 +239,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: a4300000
     m_LastClickedID: 12452
+<<<<<<< HEAD
     m_ExpandedIDs: 0000000092350000
+=======
+    m_ExpandedIDs: ffffffff0000000096350000
+>>>>>>> devonsmallwood
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -246,7 +271,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: ffffffff0000000092350000
+=======
+    m_ExpandedIDs: ffffffff0000000096350000
+>>>>>>> devonsmallwood
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -438,7 +467,11 @@ MonoBehaviour:
     x: 0
     y: 631
     width: 289
+<<<<<<< HEAD
     height: 316
+=======
+    height: 319
+>>>>>>> devonsmallwood
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 8}
@@ -490,7 +523,11 @@ MonoBehaviour:
     x: 289
     y: 0
     width: 225
+<<<<<<< HEAD
     height: 947
+=======
+    height: 957
+>>>>>>> devonsmallwood
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 10}
@@ -573,11 +610,19 @@ MonoBehaviour:
     x: 514
     y: 0
     width: 854
+<<<<<<< HEAD
     height: 947
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
   controlID: 157
+=======
+    height: 957
+  m_MinSize: {x: 202, y: 442}
+  m_MaxSize: {x: 4002, y: 8042}
+  vertical: 1
+  controlID: 26634
+>>>>>>> devonsmallwood
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -596,7 +641,11 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 854
+<<<<<<< HEAD
     height: 488
+=======
+    height: 493
+>>>>>>> devonsmallwood
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
@@ -642,9 +691,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 3.1352963, y: -9.188457, z: -0.6250823}
     speed: 2
     m_Value: {x: 3.1352963, y: -9.188457, z: -0.6250823}
+=======
+    m_Target: {x: 1.3587425, y: -3.7277632, z: 0.5423126}
+    speed: 2
+    m_Value: {x: 1.3587425, y: -3.7277632, z: 0.5423126}
+>>>>>>> devonsmallwood
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -690,6 +745,7 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
+<<<<<<< HEAD
     m_Target: {x: 0.56615293, y: -0.072709404, z: 0.05026114, w: 0.81961256}
     speed: 2
     m_Value: {x: 0.5661228, y: -0.07270553, z: 0.05025846, w: 0.8195689}
@@ -697,6 +753,15 @@ MonoBehaviour:
     m_Target: 29.269707
     speed: 2
     m_Value: 29.269707
+=======
+    m_Target: {x: 0.46047348, y: 0.0013383062, z: -0.0006760597, w: 0.88773865}
+    speed: 2
+    m_Value: {x: 0.4604463, y: 0.0013382273, z: -0.0006760198, w: 0.88768625}
+  m_Size:
+    m_Target: 23.627457
+    speed: 2
+    m_Value: 23.627457
+>>>>>>> devonsmallwood
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -829,7 +894,11 @@ MonoBehaviour:
     x: 0
     y: 488
     width: 854
+<<<<<<< HEAD
     height: 459
+=======
+    height: 464
+>>>>>>> devonsmallwood
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 2}
@@ -855,7 +924,11 @@ MonoBehaviour:
     x: 1368
     y: 0
     width: 552
+<<<<<<< HEAD
     height: 947
+=======
+    height: 957
+>>>>>>> devonsmallwood
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}

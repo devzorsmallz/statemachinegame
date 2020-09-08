@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":false,"showMaterialUpdate":false,"showSkybox":false,"showFlares":false,"showImageEffects":false,"showParticleSystems":false},"in2DMode":false,"pivot":{"x":3.13529634475708,"y":-9.188456535339356,"z":-0.6250823140144348},"rotation":{"x":0.5661529302597046,"y":-0.07270940393209458,"z":0.05026113986968994,"w":0.8196125626564026},"size":23.016193389892579,"orthographic":false}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":false,"showMaterialUpdate":false,"showSkybox":false,"showFlares":false,"showImageEffects":false,"showParticleSystems":false},"in2DMode":false,"pivot":{"x":1.3587424755096436,"y":-3.7277631759643556,"z":0.5423126220703125},"rotation":{"x":0.4604734778404236,"y":0.001338306232355535,"z":-0.0006760596879757941,"w":0.8877386450767517},"size":12.373679161071778,"orthographic":false}
+>>>>>>> devonsmallwood
