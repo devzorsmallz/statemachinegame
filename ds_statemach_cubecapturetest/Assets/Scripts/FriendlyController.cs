@@ -34,7 +34,7 @@ public class FriendlyController : MonoBehaviour
     {
         targets = GameObject.FindGameObjectsWithTag("Pick Up");
 
-        if (!hasCaptured && player.GetComponent<PlayerController>().numCubes > 0 && targets[0] != null)
+        if (!hasCaptured && targets.Length > 0)
         {
             closestDistance = Vector3.Distance(targets[0].transform.position, transform.position);
         }

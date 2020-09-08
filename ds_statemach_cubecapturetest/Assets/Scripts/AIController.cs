@@ -54,7 +54,7 @@ public class AIController : MonoBehaviour
         // If the target has been updated, find a new random target based on the number of cubes that are still in play
         if (targetList.Length > 0 && updateTarget == true)
         {
-            nextTarget = targetList[Random.Range(0,player.GetComponent<PlayerController>().numCubes)].transform;
+            nextTarget = targetList[Random.Range(0,targetList.Length)].transform;
 
             // If the chosen next target exists, set it to the current target and stop updating the target
             if (nextTarget != null)
