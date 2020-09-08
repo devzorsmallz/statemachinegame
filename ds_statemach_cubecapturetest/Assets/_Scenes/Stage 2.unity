@@ -121,8 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &18419137
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +356,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
->>>>>>> devonsmallwood
 --- !u!1 &146951559
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,8 +449,6 @@ Transform:
   m_Father: {fileID: 1052055322}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 31.401001}
-<<<<<<< HEAD
-=======
 --- !u!1 &206065776 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3845705881240743134, guid: 47497dd657bbf4141850f893c7fa3378,
@@ -589,7 +584,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47497dd657bbf4141850f893c7fa3378, type: 3}
->>>>>>> devonsmallwood
 --- !u!1 &400620000
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,11 +677,7 @@ Transform:
   m_Father: {fileID: 1678070359}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
---- !u!1 &597743935
-=======
 --- !u!1 &405565935
->>>>>>> devonsmallwood
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -695,47 +685,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
-  - component: {fileID: 597743936}
-  - component: {fileID: 597743939}
-  - component: {fileID: 597743938}
-  - component: {fileID: 597743937}
-  m_Layer: 0
-  m_Name: Cube (8)
-  m_TagString: Untagged
-=======
   - component: {fileID: 405565936}
   - component: {fileID: 405565938}
   - component: {fileID: 405565937}
   m_Layer: 0
   m_Name: Pick Up Holder (2)
   m_TagString: Pick Up
->>>>>>> devonsmallwood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
---- !u!4 &597743936
-=======
 --- !u!4 &405565936
->>>>>>> devonsmallwood
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 597743935}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -69.31601, y: 28.164385, z: -55.261097}
-  m_LocalScale: {x: 61.60011, y: 1.4611243, z: 1.2163199}
-  m_Children: []
-  m_Father: {fileID: 1678070359}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &597743937
-=======
   m_GameObject: {fileID: 405565935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: -5}
@@ -762,23 +727,11 @@ MonoBehaviour:
   player: {fileID: 1193463154}
   enemy: {fileID: 0}
 --- !u!65 &405565938
->>>>>>> devonsmallwood
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 597743935}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &597743938
-MeshRenderer:
-=======
   m_GameObject: {fileID: 405565935}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -788,14 +741,10 @@ MeshRenderer:
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &501122550
 GameObject:
->>>>>>> devonsmallwood
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 597743935}
-=======
   serializedVersion: 6
   m_Component:
   - component: {fileID: 501122551}
@@ -905,7 +854,6 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597743935}
->>>>>>> devonsmallwood
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -946,8 +894,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597743935}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &602449323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1080,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
->>>>>>> devonsmallwood
 --- !u!1 &725758536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,11 +1173,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725758536}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
---- !u!1 &903215463
-=======
 --- !u!1 &740685168
->>>>>>> devonsmallwood
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1240,48 +1181,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
-  - component: {fileID: 903215467}
-  - component: {fileID: 903215466}
-  - component: {fileID: 903215465}
-  - component: {fileID: 903215464}
-  m_Layer: 0
-  m_Name: Cube (3)
-  m_TagString: Untagged
-=======
   - component: {fileID: 740685169}
   - component: {fileID: 740685171}
   - component: {fileID: 740685170}
   m_Layer: 0
   m_Name: Pick Up Holder (7)
   m_TagString: Pick Up
->>>>>>> devonsmallwood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
---- !u!65 &903215464
-BoxCollider:
-=======
 --- !u!4 &740685169
 Transform:
->>>>>>> devonsmallwood
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 903215463}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &903215465
-MeshRenderer:
-=======
   m_GameObject: {fileID: 740685168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5, y: 0.5, z: -3.5}
@@ -1293,56 +1208,10 @@ MeshRenderer:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &740685170
 MonoBehaviour:
->>>>>>> devonsmallwood
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 903215463}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: f3097c4368bb4734da77de0ae13ed516, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &903215466
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 903215463}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &903215467
-Transform:
-=======
   m_GameObject: {fileID: 740685168}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1355,22 +1224,10 @@ Transform:
   enemy: {fileID: 0}
 --- !u!65 &740685171
 BoxCollider:
->>>>>>> devonsmallwood
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 903215463}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -71.41601, y: -3.6756153, z: -44.52922}
-  m_LocalScale: {x: 181.70116, y: 4.062951, z: 100.56374}
-  m_Children: []
-  m_Father: {fileID: 1913080468}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &920500971
-=======
   m_GameObject: {fileID: 740685168}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -1379,78 +1236,10 @@ BoxCollider:
   m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &792809879
->>>>>>> devonsmallwood
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-<<<<<<< HEAD
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8047878996068239688, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -46.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047878996068239688, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -30.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047878996068239688, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -11
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047878996068239688, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047878996068239688, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047878996068239688, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047878996068239688, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047878996068239688, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047878996068239688, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047878996068239688, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047878996068239688, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047878996068239692, guid: e4f59673ea93f8e42b3a503f59b1915d,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e4f59673ea93f8e42b3a503f59b1915d, type: 3}
---- !u!1 &977689735
-=======
     m_TransformParent: {fileID: 1223353073}
     m_Modifications:
     - target: {fileID: 3845705881240743120, guid: 47497dd657bbf4141850f893c7fa3378,
@@ -1551,7 +1340,6 @@ PrefabInstance:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47497dd657bbf4141850f893c7fa3378, type: 3}
 --- !u!1 &800897452
->>>>>>> devonsmallwood
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1559,44 +1347,20 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
-  - component: {fileID: 977689736}
-  - component: {fileID: 977689739}
-  - component: {fileID: 977689738}
-  - component: {fileID: 977689737}
-  m_Layer: 0
-  m_Name: Cube (10)
-=======
   - component: {fileID: 800897453}
   m_Layer: 0
   m_Name: Pick Ups
->>>>>>> devonsmallwood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
---- !u!4 &977689736
-=======
 --- !u!4 &800897453
->>>>>>> devonsmallwood
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 977689735}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -71.4, y: -1, z: 5.9}
-  m_LocalScale: {x: 181.61505, y: 1.4611243, z: 1.2163199}
-  m_Children: []
-  m_Father: {fileID: 1678070359}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &977689737
-=======
   m_GameObject: {fileID: 800897452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -32.53, z: 0}
@@ -1737,38 +1501,25 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!65 &903215464
->>>>>>> devonsmallwood
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 977689735}
-=======
   m_GameObject: {fileID: 903215463}
->>>>>>> devonsmallwood
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
---- !u!23 &977689738
-=======
 --- !u!23 &903215465
->>>>>>> devonsmallwood
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 977689735}
-=======
   m_GameObject: {fileID: 903215463}
->>>>>>> devonsmallwood
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -1801,64 +1552,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-<<<<<<< HEAD
---- !u!33 &977689739
-=======
 --- !u!33 &903215466
->>>>>>> devonsmallwood
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 977689735}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1052055321
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1052055322}
-  m_Layer: 0
-  m_Name: Platform Two
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1052055322
-=======
   m_GameObject: {fileID: 903215463}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &903215467
->>>>>>> devonsmallwood
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1052055321}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 92.31601, y: -30.824385, z: 67.3511}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1997495781}
-  - {fileID: 146951563}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1062378302
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-=======
   m_GameObject: {fileID: 903215463}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -71.41601, y: -3.6756153, z: -44.52922}
@@ -2128,7 +1835,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
->>>>>>> devonsmallwood
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1062378303}
@@ -2394,17 +2100,7 @@ Transform:
   m_Father: {fileID: 1678070359}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 38.709003}
-<<<<<<< HEAD
---- !u!1 &1193463154 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8047878996068239692, guid: e4f59673ea93f8e42b3a503f59b1915d,
-    type: 3}
-  m_PrefabInstance: {fileID: 920500971}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1278538925
-=======
 --- !u!1 &1159322312
->>>>>>> devonsmallwood
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2412,49 +2108,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
-  - component: {fileID: 1278538926}
-  - component: {fileID: 1278538929}
-  - component: {fileID: 1278538928}
-  - component: {fileID: 1278538927}
-  m_Layer: 0
-  m_Name: Cube (9)
-=======
   - component: {fileID: 1159322313}
   - component: {fileID: 1159322316}
   - component: {fileID: 1159322315}
   - component: {fileID: 1159322314}
   m_Layer: 5
   m_Name: Canvas
->>>>>>> devonsmallwood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
---- !u!4 &1278538926
-Transform:
-=======
 --- !u!224 &1159322313
 RectTransform:
->>>>>>> devonsmallwood
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1278538925}
-  m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -38.076008, y: 28.164385, z: -45.151096}
-  m_LocalScale: {x: 21.231586, y: 1.4611243, z: 1.2163199}
-  m_Children: []
-  m_Father: {fileID: 1678070359}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
---- !u!65 &1278538927
-BoxCollider:
-=======
   m_GameObject: {fileID: 1159322312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -2474,25 +2144,10 @@ BoxCollider:
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1159322314
 MonoBehaviour:
->>>>>>> devonsmallwood
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1278538925}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1278538928
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-=======
   m_GameObject: {fileID: 1159322312}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -2770,7 +2425,6 @@ MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
->>>>>>> devonsmallwood
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278538925}
   m_Enabled: 1
@@ -2813,8 +2467,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278538925}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &1280137628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2892,94 +2544,11 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 40}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 1}
->>>>>>> devonsmallwood
 --- !u!1001 &1328494101
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-<<<<<<< HEAD
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -45.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -32.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -11.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.301127
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.301127
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.301127
-      objectReference: {fileID: 0}
-    - target: {fileID: 8488619242634888336, guid: d2e98224e51010f4a8600be940cb619b,
-        type: 3}
-      propertyPath: m_Name
-      value: Base Goal (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -8671090678570403791, guid: d2e98224e51010f4a8600be940cb619b, type: 3}
-  m_SourcePrefab: {fileID: 100100000, guid: d2e98224e51010f4a8600be940cb619b, type: 3}
-=======
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4870356991125141123, guid: d2e98224e51010f4a8600be940cb619b,
@@ -3268,7 +2837,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47497dd657bbf4141850f893c7fa3378, type: 3}
->>>>>>> devonsmallwood
 --- !u!1 &1450745852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3362,8 +2930,6 @@ Transform:
   m_Father: {fileID: 2042331152}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &1488859312
 GameObject:
   m_ObjectHideFlags: 0
@@ -3580,7 +3146,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Count Text
->>>>>>> devonsmallwood
 --- !u!1 &1572309292
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,83 +3233,6 @@ MeshRenderer:
   m_SortingOrder: 0
 --- !u!33 &1572309296
 MeshFilter:
-<<<<<<< HEAD
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1572309292}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1574579091
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3845705881240743123, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 56.750767
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845705881240743123, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -32.041748
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845705881240743123, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.6399002
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845705881240743123, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.46193978
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845705881240743123, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.19134173
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845705881240743123, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.19134173
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845705881240743123, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.84462327
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845705881240743123, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845705881240743123, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845705881240743123, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845705881240743123, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845705881240743134, guid: 47497dd657bbf4141850f893c7fa3378,
-        type: 3}
-      propertyPath: m_Name
-      value: Pick Up
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 47497dd657bbf4141850f893c7fa3378, type: 3}
-=======
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3828,7 +3316,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Win Text
->>>>>>> devonsmallwood
 --- !u!1 &1613927960
 GameObject:
   m_ObjectHideFlags: 0
@@ -3961,8 +3448,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &1766887965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4202,7 +3687,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
->>>>>>> devonsmallwood
 --- !u!1 &1913080467
 GameObject:
   m_ObjectHideFlags: 0
@@ -4331,8 +3815,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-<<<<<<< HEAD
-=======
 --- !u!1 &1981926517 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3845705881240743134, guid: 47497dd657bbf4141850f893c7fa3378,
@@ -4364,7 +3846,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
->>>>>>> devonsmallwood
 --- !u!1 &1990685951
 GameObject:
   m_ObjectHideFlags: 0
@@ -4722,8 +4203,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &2130288078 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3845705881240743134, guid: 47497dd657bbf4141850f893c7fa3378,
@@ -4755,4 +4234,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
->>>>>>> devonsmallwood
