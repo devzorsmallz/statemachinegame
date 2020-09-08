@@ -19,15 +19,16 @@ public class CaptureTimer : MonoBehaviour
         anim = this.GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // If the cube has not been captured, the enemy is not capturing it, and the player is capturing it, start the capture countdown and play the animation
         if (!hasBeenCaptured && !enemyCapturing && playerCapturing)
         {
             StartCoroutine("CaptureCountdown", captureTime);
             anim.SetBool("shrinkAnim", true);
         }
 
+        // If the cube has been captured by the player, increase the player's cube count, play a sound, and destroy the cube
         if (hasBeenCaptured && !enemyCapturing && playerCapturing)
         {
             player.GetComponent<PlayerController>().count++;
@@ -47,12 +48,14 @@ public class CaptureTimer : MonoBehaviour
             this.gameObject.SetActive(false);
         }
 
+        // If the cube has not been captured, the player is not capturing it, and the enemy is capturing it, start the capture countdown and play the animation
         if (!hasBeenCaptured && !playerCapturing && enemyCapturing)
         {
             StartCoroutine("CaptureCountdown", captureTime);
             anim.SetBool("shrinkAnim", true);
         }
 
+        // If the cube has been captured by the enemy, increase the enemy's cube count, play a sound, notify the enemy that it has captured the cube, and destroy the cube
         if (hasBeenCaptured && !playerCapturing && enemyCapturing)
         {
             enemy.GetComponent<AIController>().count++;
@@ -76,11 +79,13 @@ public class CaptureTimer : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // If the cube is in contact with the player, set playerCapturing to true
         if (other.gameObject.CompareTag("Player"))
         {
             playerCapturing = true;
         }
 
+        // If the cube is in contact with the enemy, set enemyCapturing to true
         else if (other.gameObject.CompareTag("Enemy"))
         {
             enemyCapturing = true;
@@ -89,6 +94,7 @@ public class CaptureTimer : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        // If the player leaves the cube, set playerCapturing to false, stop playing the animation, and stop the countdown
         if (other.gameObject.CompareTag("Player"))
         {
             playerCapturing = false;
@@ -96,6 +102,7 @@ public class CaptureTimer : MonoBehaviour
             StopCoroutine("CaptureCountdown");
         }
 
+        // If the enemy leaves the cube, set enemyCapturing to false, stop playing the animation, and stop the countdown
         else if (other.gameObject.CompareTag("Enemy"))
         {
             enemyCapturing = false;
@@ -104,6 +111,7 @@ public class CaptureTimer : MonoBehaviour
         }
     }
 
+    // Capture countdown timer
     private IEnumerator CaptureCountdown(int time)
     {
         while (time > 0)

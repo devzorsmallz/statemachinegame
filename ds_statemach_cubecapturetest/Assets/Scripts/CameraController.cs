@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     private float yaw;
     private float pitch;
 
-    // Update is called once per frame
+    // Get the mouse inputs and set them to their respective axes
     void Update()
     {
         yaw += speed_h * Input.GetAxis("Mouse X");
@@ -20,6 +20,7 @@ public class CameraController : MonoBehaviour
         transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
     }
 
+    // Move camera with player
     void LateUpdate()
     {
         transform.position = player.transform.position;
