@@ -181,7 +181,7 @@ public class CaptureTimer : MonoBehaviour
         while (time > 0)
         {
             time--;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.25f);
         }
 
         if (time == 0)
