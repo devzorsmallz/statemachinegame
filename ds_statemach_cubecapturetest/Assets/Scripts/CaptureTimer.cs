@@ -22,6 +22,10 @@ public class CaptureTimer : MonoBehaviour
         player = GameObject.Find("Player");
         enemy = GameObject.Find("AI");
         friendly = GameObject.Find("Friendly");
+
+        Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>(), true);
+        Physics.IgnoreCollision(friendly.GetComponent<Collider>(), GetComponent<Collider>(), true);
+        Physics.IgnoreCollision(enemy.GetComponent<Collider>(), GetComponent<Collider>(), true);
     }
 
     void Update()
@@ -117,6 +121,9 @@ public class CaptureTimer : MonoBehaviour
         {
             GetComponent<Rigidbody>().isKinematic = true;
             GetComponent<SphereCollider>().isTrigger = true;
+            Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>(), false);
+            Physics.IgnoreCollision(friendly.GetComponent<Collider>(), GetComponent<Collider>(), false);
+            Physics.IgnoreCollision(enemy.GetComponent<Collider>(), GetComponent<Collider>(), false);
         }
     }
 
