@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     public bool hasCaptured = false;
     public int count = 0;
     public int score = 0;
+    public int dazedTime = 2;
     public Transform target;
     public float navigationUpdate;
     private float navigationTime = 0;
@@ -22,17 +23,27 @@ public class EnemyController : MonoBehaviour
     public GameObject droppedCube;
     public float distanceToPlayer;
     private Rigidbody rb;
-    public bool dashed=false;
+    public bool dashed = false;
+    public bool dazed = false;
+    public GameObject dazedEffect;
 
+    private GameObject dazedEffectInstance;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.Find("Pick Up Holder").transform;
+        dazedEffectInstance = Instantiate(dazedEffect);
+        dazedEffectInstance.SetActive(false);
     }
     void Update()
     {
+        if (dazedEffectInstance)
+        {
+            dazedEffectInstance.transform.position = transform.position;
+        }
+
         //tells the agent to move towards the target
         navigationTime += Time.deltaTime;
         if (navigationTime > navigationUpdate && target != null)
@@ -54,12 +65,22 @@ public class EnemyController : MonoBehaviour
         }
 
         //switch to attack state if player gets close and isnt dashing
-        if (distanceToPlayer < 1.5F && player.GetComponent<PlayerController>().isDashing == false)
+        if (distanceToPlayer < 1.5F && player.GetComponent<PlayerController>().isDashing == false && !dazed)
         {
             dashed = true;
             distanceToPlayer = 5;
             state = 3;
             StateChange();
+        }
+
+        if (dazed)
+        {
+            GetComponent<NavMeshAgent>().speed = 0;
+        }
+
+        else
+        {
+            GetComponent<NavMeshAgent>().speed = 10;
         }
     }
     private void FixedUpdate()
@@ -121,6 +142,7 @@ public class EnemyController : MonoBehaviour
         if (dashed == true)
         {
             StartCoroutine("myDelay");
+            player.GetComponent<PlayerController>().StartCoroutine("DazedCountdown", player.GetComponent<PlayerController>().dazedTime);
         }
     }
     public void ReturnToBase()
@@ -168,6 +190,9 @@ public class EnemyController : MonoBehaviour
         // If the player dashes into the enemy, the enemy drops its cubes and then locates a new target
         if (collision.collider.tag == "Player" && collision.collider.GetComponent<PlayerController>().isDashing)
         {
+            dazed = true;
+            StartCoroutine("DazedCountdown", dazedTime);
+
             if (count > 0)
             {
                 for (int i = 0; i < count; i++)
@@ -213,5 +238,22 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+    }
+
+    private IEnumerator DazedCountdown(int time)
+    {
+        dazedEffectInstance.SetActive(true);
+
+        while (time > 0)
+        {
+            time--;
+            yield return new WaitForSeconds(1.0f);
+        }
+
+        if (time == 0)
+        {
+            dazed = false;
+            dazedEffectInstance.SetActive(false);
+        }
     }
 }

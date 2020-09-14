@@ -11,6 +11,7 @@ public class AIController : MonoBehaviour
     public bool hasCaptured = false;
     public int count = 0;
     public int score = 0;
+    public int dazedTime = 3;
     public Transform target;
     public float navigationUpdate;
     private float navigationTime = 0;
@@ -18,6 +19,7 @@ public class AIController : MonoBehaviour
     public Vector3 lastPosition;
     public bool updateTarget;
     public bool TurnIn;
+    public bool dazed = false;
     public Transform nextTarget;
     public GameObject[] targetList;
     public GameObject player;
@@ -86,6 +88,16 @@ public class AIController : MonoBehaviour
             
             TurnIn = false;
         }
+
+        if (dazed)
+        {
+            GetComponent<NavMeshAgent>().speed = 0;
+        }
+
+        else
+        {
+            GetComponent<NavMeshAgent>().speed = 10;
+        }
     }
 
     private void FixedUpdate()
@@ -120,6 +132,9 @@ public class AIController : MonoBehaviour
         // If the player dashes into the enemy, the enemy drops its cubes
         if (collision.collider.tag == "Player" && collision.collider.GetComponent<PlayerController>().isDashing)
         {
+            dazed = true;
+            StartCoroutine("DazedCountdown", dazedTime);
+
             if (count > 0)
             {
                 for (int i = 0; i < count;  i++)
@@ -134,6 +149,20 @@ public class AIController : MonoBehaviour
 
                 count = 0;
             }
+        }
+    }
+
+    private IEnumerator DazedCountdown(int time)
+    {
+        while (time > 0)
+        {
+            time--;
+            yield return new WaitForSeconds(1.0f);
+        }
+
+        if (time == 0)
+        {
+            dazed = false;
         }
     }
 }

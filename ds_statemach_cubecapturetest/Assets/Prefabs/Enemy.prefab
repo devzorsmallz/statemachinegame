@@ -99,6 +99,7 @@ MonoBehaviour:
   hasCaptured: 0
   count: 0
   score: 0
+  dazedTime: 2
   target: {fileID: 0}
   navigationUpdate: 0
   targetIsUpdated: 0
@@ -109,6 +110,9 @@ MonoBehaviour:
     type: 3}
   distanceToPlayer: 0
   dashed: 0
+  dazed: 0
+  dazedEffect: {fileID: 7636653912440667067, guid: c8be2c6f9f560b347b4be8cbf4be6a8b,
+    type: 3}
 --- !u!135 &17995399210609251
 SphereCollider:
   m_ObjectHideFlags: 0

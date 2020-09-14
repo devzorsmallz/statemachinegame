@@ -128,6 +128,7 @@ MonoBehaviour:
   movementDisabled: 0
   isDashing: 0
   canDash: 1
+  dazed: 0
   speed: 10
   dashSpeed: 3000
   count: 0
@@ -136,11 +137,16 @@ MonoBehaviour:
   numCubes: 0
   dashCooldown: 5
   currentDashCooldown: 0
+  dazedTime: 2
   countText: {fileID: 0}
   winText: {fileID: 0}
   scoreText: {fileID: 0}
   dashCooldownText: {fileID: 0}
   cam: {fileID: 0}
+  droppedCube: {fileID: 3443562445271265366, guid: fbe6572350e1f8f47b9839e68198367e,
+    type: 3}
+  dazedEffect: {fileID: 7636653912440667067, guid: c8be2c6f9f560b347b4be8cbf4be6a8b,
+    type: 3}
 --- !u!82 &8047878996068239700
 AudioSource:
   m_ObjectHideFlags: 0

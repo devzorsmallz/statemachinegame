@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public bool movementDisabled = false;
     public bool isDashing = false;
     public bool canDash = true;
+    public bool dazed = false;
     public float speed;
     public float dashSpeed;
     public int count = 0;
@@ -18,16 +19,20 @@ public class PlayerController : MonoBehaviour
     public int numCubes;
     public int dashCooldown = 5;
     public int currentDashCooldown;
+    public int dazedTime = 2;
     public Text countText;
     public Text winText;
     public Text scoreText;
     public Text dashCooldownText;
     public GameObject cam;
+    public GameObject droppedCube;
+    public GameObject dazedEffect;
 
     private bool dashHeld = false;
     private Vector3 movement;
     private Rigidbody rb;
     private Transform cameraTransform;
+    private GameObject dazedEffectInstance;
 
     void Start()
     {
@@ -37,10 +42,17 @@ public class PlayerController : MonoBehaviour
         rb.drag = 0.5f;
         winText.text = "";
         numCubes = initialNumCubes;
+        dazedEffectInstance = Instantiate(dazedEffect);
+        dazedEffectInstance.SetActive(false);
     }
 
     void Update()
     {
+        if (dazedEffectInstance)
+        {
+            dazedEffectInstance.transform.position = transform.position;
+        }
+
         // Set the Dash Cooldown text to reflect the current dash cooldown
         dashCooldownText.text = "Dash Cooldown: " + currentDashCooldown;
 
@@ -53,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // If you are not dashing and the spacebar is not held down, your mass returns to 1 and your movement is re-enabled
-        else if (!isDashing && !dashHeld)
+        else if (!isDashing && !dashHeld && !dazed)
         {
             rb.mass = 1;
             movementDisabled = false;
@@ -175,6 +187,23 @@ public class PlayerController : MonoBehaviour
             StopCoroutine("DashCoroutine");
             isDashing = false;
         }
+
+        if (collision.collider.tag == "Enemy" && collision.collider.GetComponent<EnemyController>().dashed && !collision.collider.GetComponent<EnemyController>().dazed)
+        {
+            Debug.Log("Pog");
+
+            if (count > 0)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    GameObject droppedCubeInstance;
+                    droppedCubeInstance = Instantiate(droppedCube, new Vector3(transform.position.x, transform.position.y + 3.0f, transform.position.z), transform.rotation) as GameObject;
+                    droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
+                }
+
+                count = 0;
+            }
+        }
     }
 
     // If you miss the enemy while dashing, you cannot move for two seconds
@@ -206,6 +235,28 @@ public class PlayerController : MonoBehaviour
         {
             currentDashCooldown = time;
             canDash = true;
+        }
+    }
+
+    private IEnumerator DazedCountdown(int time)
+    {
+        dazedEffectInstance.SetActive(true);
+
+        while (time > 0)
+        {
+            dazed = true;
+            movementDisabled = true;
+            canDash = false;
+            time--;
+            yield return new WaitForSeconds(1.0f);
+        }
+
+        if (time == 0)
+        {
+            dazed = false;
+            movementDisabled = false;
+            canDash = true;
+            dazedEffectInstance.SetActive(false);
         }
     }
 }

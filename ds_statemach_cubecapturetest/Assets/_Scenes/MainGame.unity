@@ -2358,6 +2358,17 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1808948043}
+    - target: {fileID: 17995399210609245, guid: 85f54874deb51eb498987e0e4aeecfe9,
+        type: 3}
+      propertyPath: dazedTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 17995399210609245, guid: 85f54874deb51eb498987e0e4aeecfe9,
+        type: 3}
+      propertyPath: dazedEffect
+      value: 
+      objectReference: {fileID: 7636653912440667067, guid: c8be2c6f9f560b347b4be8cbf4be6a8b,
+        type: 3}
     - target: {fileID: 17995399210609248, guid: 85f54874deb51eb498987e0e4aeecfe9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2591,5 +2602,16 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 963194225}
+    - target: {fileID: 8047878996068239702, guid: e4f59673ea93f8e42b3a503f59b1915d,
+        type: 3}
+      propertyPath: dazedTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047878996068239702, guid: e4f59673ea93f8e42b3a503f59b1915d,
+        type: 3}
+      propertyPath: dazedEffect
+      value: 
+      objectReference: {fileID: 7636653912440667067, guid: c8be2c6f9f560b347b4be8cbf4be6a8b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4f59673ea93f8e42b3a503f59b1915d, type: 3}
