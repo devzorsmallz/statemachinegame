@@ -20,7 +20,7 @@ public class CaptureTimer : MonoBehaviour
     {
         anim = this.GetComponentInChildren<Animator>();
         player = GameObject.Find("Player");
-        enemy = GameObject.Find("AI");
+        enemy = GameObject.Find("Enemy");
         friendly = GameObject.Find("Friendly");
 
         Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>(), true);
@@ -68,9 +68,9 @@ public class CaptureTimer : MonoBehaviour
         // Notify the enemy that it has captured the cube, and destroy the cube
         if (hasBeenCaptured && !playerCapturing && !friendlyCapturing && enemyCapturing)
         {
-            enemy.GetComponent<AIController>().count++;
+            enemy.GetComponent<EnemyController>().count++;
 
-            Debug.Log("Enemy captured a cube! Enemy has " + enemy.GetComponent<AIController>().count + " cubes and " + enemy.GetComponent<AIController>().score + " points!");
+            Debug.Log("Enemy captured a cube! Enemy has " + enemy.GetComponent<EnemyController>().count + " cubes and " + enemy.GetComponent<EnemyController>().score + " points!");
             StopCoroutine("CaptureCountdown");
 
             player.GetComponent<ChuckSubInstance>().RunCode(@"
@@ -82,7 +82,7 @@ public class CaptureTimer : MonoBehaviour
 			}
 		    ");
 
-            enemy.GetComponent<AIController>().hasCaptured = true;
+            enemy.GetComponent<EnemyController>().hasCaptured = true;
             hasBeenCaptured = false;
             enemyCapturing = false;
             this.gameObject.SetActive(false);

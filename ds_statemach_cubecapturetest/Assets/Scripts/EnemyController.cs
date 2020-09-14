@@ -1,0 +1,217 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class EnemyController : MonoBehaviour
+{
+
+    public GameObject player;
+    public static int state = 1;
+    public bool hasCaptured = false;
+    public int count = 0;
+    public int score = 0;
+    public Transform target;
+    public float navigationUpdate;
+    private float navigationTime = 0;
+    private NavMeshAgent agent;
+    public bool targetIsUpdated = false;
+    public bool TurnIn;
+    public Transform nextTarget;
+    public GameObject[] targetList;
+    public GameObject droppedCube;
+    public float distanceToPlayer;
+    private Rigidbody rb;
+    public bool dashed=false;
+
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
+        target = GameObject.Find("Pick Up Holder").transform;
+    }
+    void Update()
+    {
+        //tells the agent to move towards the target
+        navigationTime += Time.deltaTime;
+        if (navigationTime > navigationUpdate && target != null)
+        {
+            agent.destination = target.position;
+            navigationTime = 0;
+        }
+
+        //switch to return state if captures a pickup
+        if (hasCaptured && count != 0)
+        {
+            state = 2;
+            StateChange();
+        }
+        //check the distance between player and enemy if dash isnt on cooldown
+        if (dashed==false)
+        {
+            distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+        }
+
+        //switch to attack state if player gets close and isnt dashing
+        if (distanceToPlayer < 1.5F && player.GetComponent<PlayerController>().isDashing == false)
+        {
+            dashed = true;
+            distanceToPlayer = 5;
+            state = 3;
+            StateChange();
+        }
+    }
+    private void FixedUpdate()
+    {
+        // If the current target does not exist, update the target
+        if (target.gameObject.activeInHierarchy == false)
+        {
+            UpdateTarget();
+        }
+    }
+
+    public void StateChange()
+    {
+        switch (state)
+        {
+            case 3:
+                //Attack
+                AttackPlayer();
+                print("Attacking");
+                break;
+
+            case 2:
+                //Return
+                ReturnToBase();
+                print("Returning Points");
+                break;
+
+            case 1:
+                //Retrieve
+                GetPoints();
+                print("Retrieving Points");
+                break;
+
+            default:
+                print("Invalid phase");
+                break;
+        }
+    }
+    public void GetPoints()
+    {
+        agent.isStopped = false;
+        //get a new target if one is missing
+        if (target == null || target.gameObject.activeInHierarchy == false)
+        { targetIsUpdated = false; }
+        //get new target when state changes
+        if ( targetIsUpdated == false)
+        {
+            rb.mass = 10;
+            agent.speed = 8;
+            agent.acceleration = 20;
+            targetIsUpdated = true;
+            UpdateTarget();
+        }
+    }
+    public void AttackPlayer()
+    {
+        rb.mass = 200;
+        rb.AddForce((player.transform.position-transform.position) * 99999);
+        if (dashed == true)
+        {
+            StartCoroutine("myDelay");
+        }
+    }
+    public void ReturnToBase()
+    {
+        agent.isStopped = false;
+        agent.speed = 8;
+        agent.acceleration = 20;
+        rb.mass = 10;
+        target = GameObject.Find("Enemy Base Goal").transform;   
+    }
+
+    public void UpdateTarget()
+    {
+        //search for available pickups and target a random one
+        targetList = GameObject.FindGameObjectsWithTag("Pick Up");
+        if (targetList.Length > 0)
+        {
+            nextTarget = targetList[Random.Range(0, targetList.Length)].transform;
+        }
+        // If the chosen next target exists, set it to the current target and stop updating the target
+        if (nextTarget != null)
+        {
+            target = nextTarget;
+        }
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        // If the enemy touches the Goal, update the target
+        if (col.tag == "EnemyGoal")
+        {
+            // If the enemy has cubes, exchange them for points
+                score += count;
+                player.GetComponent<PlayerController>().numCubes -= count;
+                count = 0;
+                hasCaptured = false;
+                targetIsUpdated = false;
+                state = 1;
+                StateChange();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // If the player dashes into the enemy, the enemy drops its cubes and then locates a new target
+        if (collision.collider.tag == "Player" && collision.collider.GetComponent<PlayerController>().isDashing)
+        {
+            if (count > 0)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    GameObject droppedCubeInstance;
+                    droppedCubeInstance = Instantiate(droppedCube, new Vector3(transform.position.x, transform.position.y + 3.0f, transform.position.z), transform.rotation) as GameObject;
+                    droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
+                    //reset
+                    agent.isStopped = true;
+                    StartCoroutine("stopAfterDelay");
+                    targetIsUpdated = false;
+                    state = 1;
+                    StateChange();
+                    print("Enemy Drops Point");
+                }
+                count = 0;
+            }
+        }
+        //reset the enemy upon collision with player during attack state
+        if(collision.collider.tag=="Player" && state==3)
+        {
+            //stop and reset
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            agent.isStopped = true;
+            agent.isStopped = false;
+            targetIsUpdated = false;
+            state = 1;
+            StateChange();           
+        }  
+    }
+
+    private IEnumerator myDelay()
+    {    
+        //delays the distance check to prevent the enemy from repeatedly dashing
+        yield return new WaitForSeconds(5f);
+        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+        dashed = false;
+    }
+    private IEnumerator stopAfterDelay()
+    {
+        //stops rigidbody movement after a delay
+        yield return new WaitForSeconds(1f);
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+}
