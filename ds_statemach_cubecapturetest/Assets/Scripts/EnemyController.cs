@@ -33,7 +33,8 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
-        target = GameObject.Find("Pick Up Holder").transform;
+        targetList = GameObject.FindGameObjectsWithTag("Pick Up");
+        target = targetList[Random.Range(0, targetList.Length)].transform;
         dazedEffectInstance = Instantiate(dazedEffect);
         dazedEffectInstance.SetActive(false);
     }

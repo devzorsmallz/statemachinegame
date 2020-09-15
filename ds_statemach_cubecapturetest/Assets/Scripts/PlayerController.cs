@@ -39,10 +39,13 @@ public class PlayerController : MonoBehaviour
     private GameObject dazedEffectInstance;
     public GameObject enemy;
     public GameObject enemy1;
+    public GameObject deathPlane;
+    public Vector3 initialPosition;
 
 
     void Start()
     {
+        initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         currentDashCooldown = 0;
         rb = GetComponent<Rigidbody>();
         rb.maxAngularVelocity = 10.0f;
@@ -188,6 +191,12 @@ public class PlayerController : MonoBehaviour
                 numCubes-= count;
                 count = 0;
             }
+        }
+        if(other.CompareTag("Death Area"))
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity=Vector3.zero;
+            transform.position = initialPosition;
         }
     }
 
