@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed;
     public int count = 0;
     public int score = 0;
+    public int enemyScore = 0;
+    public int enemyScore1 = 0;
+    public int enemyScores = 0;
     public int initialNumCubes = 8;
     public int numCubes;
     public int dashCooldown = 5;
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public Text countText;
     public Text winText;
     public Text scoreText;
+    public Text enemyScoreText;
     public Text dashCooldownText;
     public GameObject cam;
     public GameObject droppedCube;
@@ -33,6 +37,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Transform cameraTransform;
     private GameObject dazedEffectInstance;
+    public GameObject enemy;
+    public GameObject enemy1;
+
 
     void Start()
     {
@@ -70,18 +77,23 @@ public class PlayerController : MonoBehaviour
             rb.mass = 1;
             movementDisabled = false;
         }
-
+        enemyScore = enemy.GetComponent<EnemyController>().score;
+        if (enemy1 != null)
+        {
+            enemyScore1 = enemy1.GetComponent<EnemyController>().score;
+        }
+        enemyScores = enemyScore + enemyScore1;
         // Win Text
         if (numCubes == 0)
         {
             // If you have fewer than half of the cubes when they have all been brought to a goal, you lose
-            if (score < initialNumCubes / 2)
+            if (score < enemyScores)
             {
                 winText.text = "You Lose!";
             }
 
             // If you have exactly half, you tie
-            else if (score == initialNumCubes / 2)
+            else if (score == enemyScores)
             {
                 winText.text = "Tie!";
             }
@@ -96,6 +108,7 @@ public class PlayerController : MonoBehaviour
         // Set score text and count text
         scoreText.text = "Score: " + score.ToString();
         countText.text = "Count: " + count.ToString();
+        enemyScoreText.text = "Enemy Score: " + enemyScores.ToString();
 
         // If the dash cooldown is zero, you are not currently dashing, and you hold down both space and forward, you will not be able to move until you let go of space
         // The camera zooms in slightly to indicate that you are about to perform a dash; camera zoom control is taken from the player

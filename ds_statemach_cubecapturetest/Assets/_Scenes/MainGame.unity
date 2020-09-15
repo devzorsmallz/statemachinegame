@@ -194,6 +194,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4781609428958007415, guid: 5bb96e118c2e17a4d81b23185ed876f2,
+        type: 3}
+      propertyPath: m_Speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781609428958007415, guid: 5bb96e118c2e17a4d81b23185ed876f2,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8047878996068239688, guid: 5bb96e118c2e17a4d81b23185ed876f2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -427,6 +437,7 @@ RectTransform:
   - {fileID: 958869733}
   - {fileID: 1624299781}
   - {fileID: 29634526}
+  - {fileID: 1697242292}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1252,6 +1263,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1152961917}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1161112094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 17995399210609252, guid: 85f54874deb51eb498987e0e4aeecfe9,
+    type: 3}
+  m_PrefabInstance: {fileID: 17995397647854463}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1245517557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1927,6 +1944,83 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624299780}
+  m_CullTransparentMesh: 0
+--- !u!1 &1697242291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1697242292}
+  - component: {fileID: 1697242294}
+  - component: {fileID: 1697242293}
+  m_Layer: 5
+  m_Name: Enemy Score Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1697242292
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697242291}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 44379706}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -170, y: -29}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &1697242293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697242291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Enemy Score Text
+--- !u!222 &1697242294
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697242291}
   m_CullTransparentMesh: 0
 --- !u!1001 &1777670972
 PrefabInstance:
@@ -2613,5 +2707,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7636653912440667067, guid: c8be2c6f9f560b347b4be8cbf4be6a8b,
         type: 3}
+    - target: {fileID: 8047878996068239702, guid: e4f59673ea93f8e42b3a503f59b1915d,
+        type: 3}
+      propertyPath: enemyScoreText
+      value: 
+      objectReference: {fileID: 1697242293}
+    - target: {fileID: 8047878996068239702, guid: e4f59673ea93f8e42b3a503f59b1915d,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1161112094}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4f59673ea93f8e42b3a503f59b1915d, type: 3}
