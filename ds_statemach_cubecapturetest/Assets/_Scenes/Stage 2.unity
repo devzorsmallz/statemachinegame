@@ -4325,6 +4325,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Friendly
       objectReference: {fileID: 0}
+    - target: {fileID: 8047878996068239703, guid: 5bb96e118c2e17a4d81b23185ed876f2,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047878996068239703, guid: 5bb96e118c2e17a4d81b23185ed876f2,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb96e118c2e17a4d81b23185ed876f2, type: 3}
 --- !u!1 &1919782741
