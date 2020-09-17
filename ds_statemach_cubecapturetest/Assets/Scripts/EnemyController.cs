@@ -26,11 +26,13 @@ public class EnemyController : MonoBehaviour
     public bool dashed = false;
     public bool dazed = false;
     public GameObject dazedEffect;
+    public Vector3 initialPosition;
 
     private GameObject dazedEffectInstance;
 
     void Start()
     {
+        initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         targetList = GameObject.FindGameObjectsWithTag("Pick Up");
@@ -184,6 +186,13 @@ public class EnemyController : MonoBehaviour
                 state = 1;
                 StateChange();
         }
+        if (col.CompareTag("Death Area"))
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            transform.position = initialPosition;
+            GetComponent<NavMeshAgent>().enabled = true;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -191,6 +200,7 @@ public class EnemyController : MonoBehaviour
         // If the player dashes into the enemy, the enemy drops its cubes and then locates a new target
         if (collision.collider.tag == "Player" && collision.collider.GetComponent<PlayerController>().isDashing)
         {
+            GetComponent<NavMeshAgent>().enabled = false;
             dazed = true;
             StartCoroutine("DazedCountdown", dazedTime);
 
@@ -202,15 +212,14 @@ public class EnemyController : MonoBehaviour
                     droppedCubeInstance = Instantiate(droppedCube, new Vector3(transform.position.x, transform.position.y + 3.0f, transform.position.z), transform.rotation) as GameObject;
                     droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
                     //reset
-                    agent.isStopped = true;
+
                     StartCoroutine("stopAfterDelay");
-                    targetIsUpdated = false;
-                    state = 1;
-                    StateChange();
+                    
                     print("Enemy Drops Point");
                 }
                 count = 0;
             }
+
         }
         //reset the enemy upon collision with player during attack state
         if(collision.collider.tag=="Player" && state==3)
@@ -239,6 +248,10 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        GetComponent<NavMeshAgent>().enabled = true;
+        targetIsUpdated = false;
+        state = 1;
+        StateChange();
     }
 
     private IEnumerator DazedCountdown(int time)
