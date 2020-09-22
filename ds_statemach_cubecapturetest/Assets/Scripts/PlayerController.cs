@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public GameObject cam;
     public GameObject droppedCube;
     public GameObject dazedEffect;
+    public GameObject basePlatform;
 
     private bool dashHeld = false;
     private Vector3 movement;
@@ -200,6 +201,11 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity=Vector3.zero;
             transform.position = initialPosition;
+
+            if (count > 0)
+            {
+                StartCoroutine("RespawnCubes");
+            }
         }
     }
 
@@ -285,6 +291,19 @@ public class PlayerController : MonoBehaviour
         {
             GameObject droppedCubeInstance;
             droppedCubeInstance = Instantiate(droppedCube, new Vector3(transform.position.x, transform.position.y + 3.0f, transform.position.z), transform.rotation) as GameObject;
+            droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        count = 0;
+    }
+
+    private IEnumerator RespawnCubes()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            GameObject droppedCubeInstance;
+            droppedCubeInstance = Instantiate(droppedCube, new Vector3(basePlatform.transform.position.x - i * 2, basePlatform.transform.position.y + 3.0f, basePlatform.transform.position.z), transform.rotation) as GameObject;
             droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
             yield return new WaitForSeconds(0.1f);
         }

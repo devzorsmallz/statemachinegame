@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour
     public bool dazed = false;
     public GameObject dazedEffect;
     public Vector3 initialPosition;
+    public GameObject basePlatform;
 
     private GameObject dazedEffectInstance;
 
@@ -191,6 +192,11 @@ public class EnemyController : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             transform.position = initialPosition;
             GetComponent<NavMeshAgent>().enabled = true;
+
+            if (count > 0)
+            {
+                StartCoroutine("RespawnCubes");
+            }
         }
     }
 
@@ -269,5 +275,18 @@ public class EnemyController : MonoBehaviour
             dazed = false;
             dazedEffectInstance.SetActive(false);
         }
+    }
+
+    private IEnumerator RespawnCubes()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            GameObject droppedCubeInstance;
+            droppedCubeInstance = Instantiate(droppedCube, new Vector3(basePlatform.transform.position.x - i * 2, basePlatform.transform.position.y + 3.0f, basePlatform.transform.position.z), transform.rotation) as GameObject;
+            droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        count = 0;
     }
 }

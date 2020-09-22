@@ -17,6 +17,7 @@ public class CaptureTimer : MonoBehaviour
     private GameObject enemy;
     private GameObject enemy1;
     private GameObject friendly;
+    public GameObject basePlatform;
 
     void Start()
     {
@@ -161,7 +162,7 @@ public class CaptureTimer : MonoBehaviour
         // If the cube falls through the floor, it will respawn above the arena
         else if (other.gameObject.CompareTag("Death Area"))
         {
-            transform.position = new Vector3(0, 2.0f, 0);
+            transform.position = new Vector3(basePlatform.transform.position.x, basePlatform.transform.position.y + 3.0f, basePlatform.transform.position.z);
             GetComponent<SphereCollider>().isTrigger = false;
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().velocity = Vector3.zero;
