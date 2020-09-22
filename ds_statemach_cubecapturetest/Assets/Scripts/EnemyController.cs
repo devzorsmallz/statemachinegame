@@ -212,6 +212,11 @@ public class EnemyController : MonoBehaviour
             StartCoroutine("stopAfterDelay");
             if (count > 0)
             {
+                if (count > 0)
+                {
+                    StartCoroutine("DropCubes");
+                }
+
                 for (int i = 0; i < count; i++)
                 {
                     GameObject droppedCubeInstance;
@@ -275,6 +280,24 @@ public class EnemyController : MonoBehaviour
             dazed = false;
             dazedEffectInstance.SetActive(false);
         }
+    }
+
+    private IEnumerator DropCubes()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            GameObject droppedCubeInstance;
+            droppedCubeInstance = Instantiate(droppedCube, new Vector3(transform.position.x, transform.position.y + 3.0f, transform.position.z), transform.rotation) as GameObject;
+            droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
+            //reset
+
+
+
+            print("Enemy Drops Point");
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        count = 0;
     }
 
     private IEnumerator RespawnCubes()

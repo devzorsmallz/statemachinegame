@@ -94,7 +94,6 @@
     <Compile Include="Assets\Chunity\Scripts\Utility\ChuckIntSyncer.cs" />
     <Compile Include="Assets\Chunity\Scripts\Utility\ChuckStringSyncer.cs" />
     <Compile Include="Assets\Chunity\Scripts\Utility\TheChuck.cs" />
-    <Compile Include="Assets\Scripts\AIController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraZoom.cs" />
     <Compile Include="Assets\Scripts\CaptureTimer.cs" />
