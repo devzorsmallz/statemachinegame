@@ -219,11 +219,11 @@ public class PlayerController : MonoBehaviour
             isDashing = false;
         }
 
-        if (collision.collider.tag == "Enemy" && collision.collider.GetComponent<EnemyController>().dashed && !collision.collider.GetComponent<EnemyController>().dazed)
+        if (collision.collider.tag == "Enemy" && collision.collider.GetComponent<EnemyController>().dashed && !collision.collider.GetComponent<EnemyController>().dazed && !isDashing)
         {
             Debug.Log("Pog");
 
-            if (count > 0)
+            if (!isDashing && count > 0)
             {
                 StartCoroutine("DropCubes");
             }

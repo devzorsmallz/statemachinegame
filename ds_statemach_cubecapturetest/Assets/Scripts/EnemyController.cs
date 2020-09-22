@@ -141,12 +141,15 @@ public class EnemyController : MonoBehaviour
     }
     public void AttackPlayer()
     {
-        rb.mass = 200;
-        rb.AddForce((player.transform.position - transform.position) * 99999);
-        if (dashed == true)
+        if (!player.GetComponent<PlayerController>().isDashing)
         {
-            StartCoroutine("myDelay");
-            player.GetComponent<PlayerController>().StartCoroutine("DazedCountdown", player.GetComponent<PlayerController>().dazedTime);
+            rb.mass = 200;
+            rb.AddForce((player.transform.position - transform.position) * 99999);
+            if (dashed == true)
+            {
+                StartCoroutine("myDelay");
+                player.GetComponent<PlayerController>().StartCoroutine("DazedCountdown", player.GetComponent<PlayerController>().dazedTime);
+            }
         }
     }
     public void ReturnToBase()
@@ -233,7 +236,7 @@ public class EnemyController : MonoBehaviour
 
         }
         //reset the enemy upon collision with player during attack state
-        if (collision.collider.tag == "Player" && state == 3)
+        if (collision.collider.tag == "Player" && state == 3 && !player.GetComponent<PlayerController>().isDashing)
         {
             //stop and reset
             rb.velocity = Vector3.zero;
