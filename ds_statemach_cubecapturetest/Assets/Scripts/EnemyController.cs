@@ -48,6 +48,7 @@ public class EnemyController : MonoBehaviour
         }
 
         //tells the agent to move towards the target
+        targetList = GameObject.FindGameObjectsWithTag("Pick Up");
         navigationTime += Time.deltaTime;
         if (navigationTime > navigationUpdate && target != null && GetComponent<NavMeshAgent>().enabled == true)
         {
