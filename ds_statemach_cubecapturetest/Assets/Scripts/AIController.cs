@@ -137,17 +137,7 @@ public class AIController : MonoBehaviour
 
             if (count > 0)
             {
-                for (int i = 0; i < count;  i++)
-                {
-                    GameObject droppedCubeInstance;
-                    droppedCubeInstance = Instantiate(droppedCube, new Vector3(transform.position.x, transform.position.y + 3.0f, transform.position.z), transform.rotation) as GameObject;
-                    droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
-                    TurnIn = false;
-                    updateTarget = true;
-                    Debug.Log("Hello");
-                }
-
-                count = 0;
+                StartCoroutine("DropCubes");
             }
         }
     }
@@ -164,5 +154,21 @@ public class AIController : MonoBehaviour
         {
             dazed = false;
         }
+    }
+
+    private IEnumerator DropCubes()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            GameObject droppedCubeInstance;
+            droppedCubeInstance = Instantiate(droppedCube, new Vector3(transform.position.x, transform.position.y + 3.0f, transform.position.z), transform.rotation) as GameObject;
+            droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
+            TurnIn = false;
+            updateTarget = true;
+            Debug.Log("Hello");
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        count = 0;
     }
 }
