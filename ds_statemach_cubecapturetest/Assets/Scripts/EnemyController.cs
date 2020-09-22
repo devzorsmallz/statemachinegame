@@ -49,7 +49,7 @@ public class EnemyController : MonoBehaviour
 
         //tells the agent to move towards the target
         navigationTime += Time.deltaTime;
-        if (navigationTime > navigationUpdate && target != null)
+        if (navigationTime > navigationUpdate && target != null && GetComponent<NavMeshAgent>().enabled == true)
         {
             agent.destination = target.position;
             navigationTime = 0;

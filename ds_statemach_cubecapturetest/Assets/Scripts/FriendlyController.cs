@@ -71,7 +71,7 @@ public class FriendlyController : MonoBehaviour
             }
         }
 
-        Debug.Log("Friendly AI Count: " + count);
+        //Debug.Log("Friendly AI Count: " + count);
 
         score = player.GetComponent<PlayerController>().score;
 
@@ -92,7 +92,7 @@ public class FriendlyController : MonoBehaviour
             agent.destination = goal.transform.position;
         }
     }
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         // If the current target does not exist, update the target
         if (target.gameObject.activeInHierarchy == false)
