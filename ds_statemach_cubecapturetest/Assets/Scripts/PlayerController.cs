@@ -20,14 +20,15 @@ public class PlayerController : MonoBehaviour
     public int enemyScores = 0;
     public int initialNumCubes = 8;
     public int numCubes;
-    public int dashCooldown = 5;
-    public int currentDashCooldown;
+    public float dashCooldown = 5.0f;
+    public float currentDashCooldown;
     public int dazedTime = 2;
     public Text countText;
     public Text winText;
     public Text scoreText;
     public Text enemyScoreText;
     public Text dashCooldownText;
+    public Slider cooldownSlider;
     public GameObject cam;
     public GameObject droppedCube;
     public GameObject dazedEffect;
@@ -64,7 +65,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // Set the Dash Cooldown text to reflect the current dash cooldown
-        dashCooldownText.text = "Dash Cooldown: " + currentDashCooldown;
+        //dashCooldownText.text = "Dash Cooldown: " + currentDashCooldown;
+        cooldownSlider.value = currentDashCooldown/dashCooldown;
 
         if (isDashing)
         {
@@ -131,6 +133,7 @@ public class PlayerController : MonoBehaviour
             // If you let go of space and are still holding forward, you get launched in the direction the camera is facing, and your dash goes on cooldown
             else
             {
+                dashCooldownText.text="Wait to dash...";
                 rb.AddForce(new Vector3(cam.transform.forward.x, 0.0f, cam.transform.forward.z) * dashSpeed);
                 isDashing = true;
                 canDash = false;
@@ -257,6 +260,7 @@ public class PlayerController : MonoBehaviour
         {
             currentDashCooldown = time;
             canDash = true;
+            dashCooldownText.text= "Press 'Space' to dash!";
         }
     }
 

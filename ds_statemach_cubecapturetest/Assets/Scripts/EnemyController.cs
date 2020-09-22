@@ -48,9 +48,8 @@ public class EnemyController : MonoBehaviour
         }
 
         //tells the agent to move towards the target
-        targetList = GameObject.FindGameObjectsWithTag("Pick Up");
         navigationTime += Time.deltaTime;
-        if (navigationTime > navigationUpdate && target != null && GetComponent<NavMeshAgent>().enabled == true)
+        if (navigationTime > navigationUpdate && target != null && agent.isOnNavMesh)
         {
             agent.destination = target.position;
             navigationTime = 0;
@@ -63,7 +62,7 @@ public class EnemyController : MonoBehaviour
             StateChange();
         }
         //check the distance between player and enemy if dash isnt on cooldown
-        if (dashed==false)
+        if (dashed == false)
         {
             distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
         }
@@ -130,7 +129,7 @@ public class EnemyController : MonoBehaviour
         if (target == null || target.gameObject.activeInHierarchy == false)
         { targetIsUpdated = false; }
         //get new target when state changes
-        if ( targetIsUpdated == false)
+        if (targetIsUpdated == false)
         {
             rb.mass = 10;
             agent.speed = 8;
@@ -142,7 +141,7 @@ public class EnemyController : MonoBehaviour
     public void AttackPlayer()
     {
         rb.mass = 200;
-        rb.AddForce((player.transform.position-transform.position) * 99999);
+        rb.AddForce((player.transform.position - transform.position) * 99999);
         if (dashed == true)
         {
             StartCoroutine("myDelay");
@@ -151,11 +150,10 @@ public class EnemyController : MonoBehaviour
     }
     public void ReturnToBase()
     {
-        agent.isStopped = false;
         agent.speed = 8;
         agent.acceleration = 20;
         rb.mass = 10;
-        target = GameObject.Find("Enemy Base Goal").transform;   
+        target = GameObject.Find("Enemy Base Goal").transform;
     }
 
     public void UpdateTarget()
@@ -179,13 +177,13 @@ public class EnemyController : MonoBehaviour
         if (col.tag == "EnemyGoal")
         {
             // If the enemy has cubes, exchange them for points
-                score += count;
-                player.GetComponent<PlayerController>().numCubes -= count;
-                count = 0;
-                hasCaptured = false;
-                targetIsUpdated = false;
-                state = 1;
-                StateChange();
+            score += count;
+            player.GetComponent<PlayerController>().numCubes -= count;
+            count = 0;
+            hasCaptured = false;
+            targetIsUpdated = false;
+            state = 1;
+            StateChange();
         }
         if (col.CompareTag("Death Area"))
         {
@@ -201,10 +199,11 @@ public class EnemyController : MonoBehaviour
         // If the player dashes into the enemy, the enemy drops its cubes and then locates a new target
         if (collision.collider.tag == "Player" && collision.collider.GetComponent<PlayerController>().isDashing)
         {
+            hasCaptured = false;
             GetComponent<NavMeshAgent>().enabled = false;
             dazed = true;
             StartCoroutine("DazedCountdown", dazedTime);
-
+            StartCoroutine("stopAfterDelay");
             if (count > 0)
             {
                 for (int i = 0; i < count; i++)
@@ -213,9 +212,9 @@ public class EnemyController : MonoBehaviour
                     droppedCubeInstance = Instantiate(droppedCube, new Vector3(transform.position.x, transform.position.y + 3.0f, transform.position.z), transform.rotation) as GameObject;
                     droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
                     //reset
-
-                    StartCoroutine("stopAfterDelay");
                     
+
+
                     print("Enemy Drops Point");
                 }
                 count = 0;
@@ -223,7 +222,7 @@ public class EnemyController : MonoBehaviour
 
         }
         //reset the enemy upon collision with player during attack state
-        if(collision.collider.tag=="Player" && state==3)
+        if (collision.collider.tag == "Player" && state == 3)
         {
             //stop and reset
             rb.velocity = Vector3.zero;
@@ -232,12 +231,12 @@ public class EnemyController : MonoBehaviour
             agent.isStopped = false;
             targetIsUpdated = false;
             state = 1;
-            StateChange();           
-        }  
+            StateChange();
+        }
     }
 
     private IEnumerator myDelay()
-    {    
+    {
         //delays the distance check to prevent the enemy from repeatedly dashing
         yield return new WaitForSeconds(5f);
         distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
@@ -246,7 +245,7 @@ public class EnemyController : MonoBehaviour
     private IEnumerator stopAfterDelay()
     {
         //stops rigidbody movement after a delay
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         GetComponent<NavMeshAgent>().enabled = true;
@@ -261,8 +260,8 @@ public class EnemyController : MonoBehaviour
 
         while (time > 0)
         {
-            time--;
-            yield return new WaitForSeconds(1.0f);
+            time -= 2;
+            yield return new WaitForSeconds(2.0f);
         }
 
         if (time == 0)
