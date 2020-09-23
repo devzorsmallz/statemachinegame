@@ -27,7 +27,6 @@ public class EnemyController : MonoBehaviour
     public bool dazed = false;
     public GameObject dazedEffect;
     public Vector3 initialPosition;
-    public GameObject basePlatform;
 
     private GameObject dazedEffectInstance;
 
@@ -141,15 +140,12 @@ public class EnemyController : MonoBehaviour
     }
     public void AttackPlayer()
     {
-        if (!player.GetComponent<PlayerController>().isDashing)
+        rb.mass = 200;
+        rb.AddForce((player.transform.position - transform.position) * 99999);
+        if (dashed == true)
         {
-            rb.mass = 200;
-            rb.AddForce((player.transform.position - transform.position) * 99999);
-            if (dashed == true)
-            {
-                StartCoroutine("myDelay");
-                player.GetComponent<PlayerController>().StartCoroutine("DazedCountdown", player.GetComponent<PlayerController>().dazedTime);
-            }
+            StartCoroutine("myDelay");
+            player.GetComponent<PlayerController>().StartCoroutine("DazedCountdown", player.GetComponent<PlayerController>().dazedTime);
         }
     }
     public void ReturnToBase()
@@ -195,11 +191,6 @@ public class EnemyController : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             transform.position = initialPosition;
             GetComponent<NavMeshAgent>().enabled = true;
-
-            if (count > 0)
-            {
-                StartCoroutine("RespawnCubes");
-            }
         }
     }
 
@@ -215,18 +206,13 @@ public class EnemyController : MonoBehaviour
             StartCoroutine("stopAfterDelay");
             if (count > 0)
             {
-                if (count > 0)
-                {
-                    StartCoroutine("DropCubes");
-                }
-
                 for (int i = 0; i < count; i++)
                 {
                     GameObject droppedCubeInstance;
                     droppedCubeInstance = Instantiate(droppedCube, new Vector3(transform.position.x, transform.position.y + 3.0f, transform.position.z), transform.rotation) as GameObject;
                     droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
                     //reset
-                    
+
 
 
                     print("Enemy Drops Point");
@@ -236,7 +222,7 @@ public class EnemyController : MonoBehaviour
 
         }
         //reset the enemy upon collision with player during attack state
-        if (collision.collider.tag == "Player" && state == 3 && !player.GetComponent<PlayerController>().isDashing)
+        if (collision.collider.tag == "Player" && state == 3)
         {
             //stop and reset
             rb.velocity = Vector3.zero;
@@ -283,36 +269,5 @@ public class EnemyController : MonoBehaviour
             dazed = false;
             dazedEffectInstance.SetActive(false);
         }
-    }
-
-    private IEnumerator DropCubes()
-    {
-        for (int i = 0; i < count; i++)
-        {
-            GameObject droppedCubeInstance;
-            droppedCubeInstance = Instantiate(droppedCube, new Vector3(transform.position.x, transform.position.y + 3.0f, transform.position.z), transform.rotation) as GameObject;
-            droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
-            //reset
-
-
-
-            print("Enemy Drops Point");
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        count = 0;
-    }
-
-    private IEnumerator RespawnCubes()
-    {
-        for (int i = 0; i < count; i++)
-        {
-            GameObject droppedCubeInstance;
-            droppedCubeInstance = Instantiate(droppedCube, new Vector3(basePlatform.transform.position.x - i * 2, basePlatform.transform.position.y + 3.0f, basePlatform.transform.position.z), transform.rotation) as GameObject;
-            droppedCubeInstance.GetComponent<Rigidbody>().AddForce(droppedCube.transform.up * 5.0f, ForceMode.Impulse);
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        count = 0;
     }
 }
