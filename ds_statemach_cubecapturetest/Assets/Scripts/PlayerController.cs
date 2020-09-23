@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public int dazedTime = 2;
     public Text countText;
     public Text winText;
+    public GameObject EndScreen;
     public Text scoreText;
     public Text enemyScoreText;
     public Text dashCooldownText;
@@ -47,12 +48,16 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         currentDashCooldown = 0;
         rb = GetComponent<Rigidbody>();
         rb.maxAngularVelocity = 10.0f;
         rb.drag = 0.5f;
         winText.text = "";
+        EndScreen.SetActive(false);
         numCubes = initialNumCubes;
         dazedEffectInstance = Instantiate(dazedEffect);
         dazedEffectInstance.SetActive(false);
@@ -95,19 +100,31 @@ public class PlayerController : MonoBehaviour
             // If you have fewer than half of the cubes when they have all been brought to a goal, you lose
             if (score < enemyScores)
             {
+                Time.timeScale = 0;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 winText.text = "You Lose!";
+                EndScreen.SetActive(true);
             }
 
             // If you have exactly half, you tie
             else if (score == enemyScores)
             {
+                Time.timeScale = 0;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 winText.text = "Tie!";
+                EndScreen.SetActive(true);
             }
             
             // If you have more than half, you win
             else
             {
+                Time.timeScale = 0;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 winText.text = "You Win!";
+                EndScreen.SetActive(true);
             }
         }
 
