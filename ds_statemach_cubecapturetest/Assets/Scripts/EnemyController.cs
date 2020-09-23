@@ -145,7 +145,6 @@ public class EnemyController : MonoBehaviour
         if (dashed == true)
         {
             StartCoroutine("myDelay");
-            player.GetComponent<PlayerController>().StartCoroutine("DazedCountdown", player.GetComponent<PlayerController>().dazedTime);
         }
     }
     public void ReturnToBase()
@@ -222,11 +221,12 @@ public class EnemyController : MonoBehaviour
 
         }
         //reset the enemy upon collision with player during attack state
-        if (collision.collider.tag == "Player" && state == 3)
+        if (collision.collider.tag == "Player" && !collision.collider.GetComponent<PlayerController>().isDashing)
         {
+            player.GetComponent<PlayerController>().StartCoroutine("DazedCountdown", player.GetComponent<PlayerController>().dazedTime);
             //stop and reset
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            //rb.velocity = Vector3.zero;
+            //rb.angularVelocity = Vector3.zero;
             agent.isStopped = true;
             agent.isStopped = false;
             targetIsUpdated = false;
