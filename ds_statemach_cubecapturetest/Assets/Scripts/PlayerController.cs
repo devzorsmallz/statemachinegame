@@ -233,7 +233,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             StopCoroutine("DashCoroutine");
-            //isDashing = false;
+            isDashing = false;
+            EnemyController.gotHit = true;
         }
 
         if (collision.collider.tag == "Enemy" && collision.collider.GetComponent<EnemyController>().dashed && !collision.collider.GetComponent<EnemyController>().dazed && !isDashing)

@@ -30,6 +30,9 @@ public class EnemyController : MonoBehaviour
 
     private GameObject dazedEffectInstance;
 
+    public static bool gotHit = false;
+    public bool dazePlayer=false;
+
     void Start()
     {
         initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -42,6 +45,10 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
+        if(gotHit)
+        {
+            StartCoroutine("hitDelay");
+        }
         if (dazedEffectInstance)
         {
             dazedEffectInstance.transform.position = transform.position;
@@ -68,13 +75,17 @@ public class EnemyController : MonoBehaviour
         }
 
         //switch to attack state if player gets close and isnt dashing
-        if (distanceToPlayer < 1.5F && player.GetComponent<PlayerController>().isDashing == false && !dazed)
+        if (distanceToPlayer < 1.5F && player.GetComponent<PlayerController>().isDashing == false && !dazed && !gotHit)
         {
             dashed = true;
             distanceToPlayer = 5;
             state = 3;
             StateChange();
         }
+        if(distanceToPlayer<2F && player.GetComponent<PlayerController>().isDashing)
+        {
+            GetComponent<NavMeshAgent>().enabled = false;
+        } 
 
         if (dazed)
         {
@@ -124,6 +135,7 @@ public class EnemyController : MonoBehaviour
     }
     public void GetPoints()
     {
+        GetComponent<NavMeshAgent>().enabled = true;
         agent.isStopped = false;
         //get a new target if one is missing
         if (target == null || target.gameObject.activeInHierarchy == false)
@@ -140,6 +152,7 @@ public class EnemyController : MonoBehaviour
     }
     public void AttackPlayer()
     {
+        dazePlayer = true;
         rb.mass = 200;
         rb.AddForce((player.transform.position - transform.position) * 99999);
         if (dashed == true)
@@ -149,6 +162,8 @@ public class EnemyController : MonoBehaviour
     }
     public void ReturnToBase()
     {
+        GetComponent<NavMeshAgent>().enabled = true;
+        agent.isStopped = false;
         agent.speed = 8;
         agent.acceleration = 20;
         rb.mass = 10;
@@ -190,16 +205,22 @@ public class EnemyController : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             transform.position = initialPosition;
             GetComponent<NavMeshAgent>().enabled = true;
+            count = 0;
+            hasCaptured = false;
+            targetIsUpdated = false;
+            state = 1;
+            StateChange();
+
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         // If the player dashes into the enemy, the enemy drops its cubes and then locates a new target
-        if (collision.collider.tag == "Player" && collision.collider.GetComponent<PlayerController>().isDashing)
+        if (collision.collider.tag == "Player" && gotHit)
         {
-            hasCaptured = false;
             GetComponent<NavMeshAgent>().enabled = false;
+            hasCaptured = false;
             dazed = true;
             StartCoroutine("DazedCountdown", dazedTime);
             StartCoroutine("stopAfterDelay");
@@ -217,21 +238,20 @@ public class EnemyController : MonoBehaviour
                     print("Enemy Drops Point");
                 }
                 count = 0;
+                hasCaptured = false;
             }
 
         }
         //reset the enemy upon collision with player during attack state
-        if (collision.collider.tag == "Player" && !collision.collider.GetComponent<PlayerController>().isDashing)
+        if (collision.collider.tag == "Player" && dazePlayer)
         {
             player.GetComponent<PlayerController>().StartCoroutine("DazedCountdown", player.GetComponent<PlayerController>().dazedTime);
             //stop and reset
-            //rb.velocity = Vector3.zero;
-            //rb.angularVelocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             agent.isStopped = true;
             agent.isStopped = false;
-            targetIsUpdated = false;
-            state = 1;
-            StateChange();
+            dazePlayer = false;
         }
     }
 
@@ -242,6 +262,12 @@ public class EnemyController : MonoBehaviour
         distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
         dashed = false;
     }
+    private IEnumerator hitDelay()
+    {
+        //delays the distance check to prevent the enemy from repeatedly dashing
+        yield return new WaitForSeconds(1f);
+        gotHit = false;
+    }
     private IEnumerator stopAfterDelay()
     {
         //stops rigidbody movement after a delay
@@ -249,6 +275,7 @@ public class EnemyController : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         GetComponent<NavMeshAgent>().enabled = true;
+        agent.isStopped = false;
         targetIsUpdated = false;
         state = 1;
         StateChange();
